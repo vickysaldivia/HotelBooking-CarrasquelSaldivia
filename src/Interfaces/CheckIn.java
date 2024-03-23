@@ -30,6 +30,18 @@ public class CheckIn extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         Back = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        CheckIn = new javax.swing.JButton();
+        IDCliente = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        DisplayEstadía = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        DisplayHab = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        DisplayCliente = new javax.swing.JTextPane();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,7 +55,7 @@ public class CheckIn extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("CHECK - IN");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 390, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 390, -1));
 
         Back.setBackground(new java.awt.Color(255, 255, 255));
         Back.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
@@ -56,7 +68,71 @@ public class CheckIn extends javax.swing.JFrame {
         });
         jPanel2.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 50));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 70));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 70));
+
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 139));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Tipo de Habitación");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 150, 20));
+
+        CheckIn.setBackground(new java.awt.Color(0, 51, 139));
+        CheckIn.setForeground(new java.awt.Color(255, 255, 255));
+        CheckIn.setText("Asignar Habitación");
+        CheckIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckInActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CheckIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, 40));
+
+        IDCliente.setBackground(new java.awt.Color(255, 255, 255));
+        IDCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
+        jPanel1.add(IDCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 180, -1));
+
+        DisplayEstadía.setEditable(false);
+        DisplayEstadía.setBackground(new java.awt.Color(255, 255, 255));
+        DisplayEstadía.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
+        DisplayEstadía.setForeground(new java.awt.Color(204, 204, 204));
+        DisplayEstadía.setFocusable(false);
+        jScrollPane1.setViewportView(DisplayEstadía);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 130, 100));
+
+        DisplayHab.setEditable(false);
+        DisplayHab.setBackground(new java.awt.Color(255, 255, 255));
+        DisplayHab.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
+        DisplayHab.setForeground(new java.awt.Color(204, 204, 204));
+        DisplayHab.setFocusable(false);
+        jScrollPane2.setViewportView(DisplayHab);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 150, 100));
+
+        DisplayCliente.setEditable(false);
+        DisplayCliente.setBackground(new java.awt.Color(255, 255, 255));
+        DisplayCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
+        DisplayCliente.setForeground(new java.awt.Color(204, 204, 204));
+        DisplayCliente.setFocusable(false);
+        jScrollPane3.setViewportView(DisplayCliente);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 150, 100));
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 51, 139));
+        jLabel7.setText("ID del Cliente:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 20));
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 51, 139));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Datos del Cliente");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 150, 20));
+
+        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 51, 139));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Tiempo de Estadía");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 150, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,6 +156,13 @@ public class CheckIn extends javax.swing.JFrame {
         VentanaMenu.setLocationRelativeTo(null);
         VentanaMenu.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
+
+    private void CheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInActionPerformed
+        
+        //Reservacion reservacion = (Reservacion) reservaciones.buscarNodo(ci, reservaciones.getNodoRaiz()).getDato();
+
+        //JOptionPane.showMessageDialog(null,reservaciones.Buscar_Nodo(reservaciones.getNodoRaiz(), ci).toString());
+    }//GEN-LAST:event_CheckInActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,8 +201,20 @@ public class CheckIn extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
+    private javax.swing.JButton CheckIn;
+    private javax.swing.JTextPane DisplayCliente;
+    private javax.swing.JTextPane DisplayEstadía;
+    private javax.swing.JTextPane DisplayHab;
+    private javax.swing.JTextField IDCliente;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

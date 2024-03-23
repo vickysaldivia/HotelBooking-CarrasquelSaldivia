@@ -35,6 +35,7 @@ public class HistorialHab extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         HistHab = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
+        BuscarHistorial = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,7 +73,12 @@ public class HistorialHab extends javax.swing.JFrame {
 
         Seleccion.setBackground(new java.awt.Color(255, 255, 255));
         Seleccion.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
-        jPanel1.add(Seleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 150, -1));
+        Seleccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeleccionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Seleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 150, -1));
 
         HistHab.setBackground(new java.awt.Color(255, 255, 255));
         HistHab.setColumns(20);
@@ -87,7 +93,11 @@ public class HistorialHab extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 51, 139));
         jLabel7.setText("Seleccionar habitación:");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 230, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 230, 20));
+
+        BuscarHistorial.setBackground(new java.awt.Color(0, 51, 139));
+        BuscarHistorial.setText("Buscar");
+        jPanel1.add(BuscarHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 97, 80, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +121,10 @@ public class HistorialHab extends javax.swing.JFrame {
         VentanaMenu.setLocationRelativeTo(null);
         VentanaMenu.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
+
+    private void SeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SeleccionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,6 +163,7 @@ public class HistorialHab extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
+    private javax.swing.JToggleButton BuscarHistorial;
     private javax.swing.JTextArea HistHab;
     private javax.swing.JTextField Seleccion;
     private javax.swing.JLabel jLabel4;

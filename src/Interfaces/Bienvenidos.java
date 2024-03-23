@@ -5,6 +5,7 @@
 package Interfaces;
 
 import Clases.Cliente;
+import EDD.ABB;
 import EDD.HashTable;
 import Funciones.ArchivoCSV;
 
@@ -15,6 +16,7 @@ import Funciones.ArchivoCSV;
 public class Bienvenidos extends javax.swing.JFrame {
 
     public static HashTable hospedados = new HashTable();
+    public static ABB reservaciones =  new ABB();
     
     public Bienvenidos() {
         
@@ -95,12 +97,11 @@ public class Bienvenidos extends javax.swing.JFrame {
         // TODO add your handling code here:
         ArchivoCSV archivo = new ArchivoCSV();
         archivo.Leer_Estado(hospedados);
-        //APLICARLO PARA BUSCA HOSPEDADOS !!
-        String nombre = "Kay";
-        String apellido = "McPherson";
+        archivo.leer_reservaciones(reservaciones);
+        String cadena = "";
+        //System.out.println(reservaciones.preOrden2(reservaciones.getNodoRaiz(), cadena));
+       
         
-        Cliente cliente = new Cliente(nombre, apellido);
-        System.out.println(hospedados.isInHashIndexN(cliente));
                 
         Menu VentanaMenu = new Menu();
         

@@ -42,15 +42,19 @@ public class ArchivoCSV {
                 while ((line = br.readLine()) != null) {
                     if (!line.isEmpty()) {
                         expresion_txt += line + "\n";
+                        
                     }
                 }
                 if (!"".equals(expresion_txt)) {
                     String[] expresion_split = expresion_txt.split("\n");
                     for (int i = 0; i < expresion_split.length - 1; i++) {
                         String[] info = expresion_split[i].split(",");
+                        
+                        
                         if (!info[0].equalsIgnoreCase("")) {
-                            if (help.validarCedula(info[0]) && help.validarEmail(info[3]) && help.validarTelf(info[5]) && help.validarFecha(info[7]) && help.validarFecha(info[7])) {
-                                int cedula = Integer.parseInt(info[0].replaceAll(".", ""));
+                            //if (help.ValidarCedula(info[0]) != -1 && help.validarEmail(info[3]) && help.validarTelf(info[5]) && help.validarFecha(info[7])) {
+                                
+                                int cedula = help.ValidarCedula(info[0]);
                                 String nombre = info[1];
                                 String apellido = info[2];
                                 String email = info[3];
@@ -65,10 +69,10 @@ public class ArchivoCSV {
 
                                 Reservacion reservacion = new Reservacion(cliente, tipo_hab, llegada, salida);
                                 reservaciones.insertNodo(reservaciones.getNodoRaiz(), reservacion, cedula);
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Hay un error en algun dato");
-                                break;
-                            }
+//                            } else {
+//                                JOptionPane.showMessageDialog(null, "Hay un error en algun dato");
+//                                break;
+//                            }
                         }
                     }
                 }
@@ -100,7 +104,7 @@ public class ArchivoCSV {
                     for (int i = 0; i < expresion_split.length - 1; i++) {
                         String[] info = expresion_split[i].split(",");
                         if (!info[0].equalsIgnoreCase("")) {
-                            if (help.validarCedula(info[0]) && help.validarEmail(info[3]) && help.validarFecha(info[55])) {
+                            if (help.validarCedula(info[0]) && help.validarEmail(info[3]) && help.validarFecha(info[5])) {
                                 int cedula = Integer.parseInt(info[0].replaceAll(".", ""));
                                 String nombre = info[1];
                                 String apellido = info[2];

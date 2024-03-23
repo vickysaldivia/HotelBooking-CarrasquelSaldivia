@@ -4,6 +4,11 @@
  */
 package Interfaces;
 
+import Clases.Reservacion;
+import Funciones.helpers;
+import static Interfaces.Bienvenidos.reservaciones;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Victoria Saldivia
@@ -158,7 +163,27 @@ public class BuscarReserva extends javax.swing.JFrame {
     }//GEN-LAST:event_BackActionPerformed
 
     private void BuscarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarReservaActionPerformed
-        // TODO add your handling code here:
+        helpers help = new helpers();
+        String cedula = IDCliente.getText();
+        int ci = help.ValidarCedula(cedula);
+        
+        
+        
+        System.out.println(ci);
+        int count = 0;
+        //System.out.println(reservaciones.buscarNodo(ci, reservaciones.getNodoRaiz()).getDato().toString());
+        //System.out.println(reservaciones.buscarNodo2(ci, reservaciones.getNodoRaiz()).getDato().toString());
+        
+        if (reservaciones.buscarRecursivo(reservaciones.getNodoRaiz(), ci) != null){
+            JOptionPane.showMessageDialog(null,reservaciones.buscarRecursivo(reservaciones.getNodoRaiz(), ci).getDato().toString());
+        }else{
+            JOptionPane.showMessageDialog(null,"No existe la reservacion");
+        }
+        
+        //System.out.println(reservaciones.buscarRecursivo(reservaciones.getNodoRaiz(), ci).getDato().toString());
+        //Reservacion reservacion = (Reservacion) reservaciones.buscarNodo(ci, reservaciones.getNodoRaiz()).getDato();
+        
+        //JOptionPane.showMessageDialog(null,reservaciones.Buscar_Nodo(reservaciones.getNodoRaiz(), ci).toString());
     }//GEN-LAST:event_BuscarReservaActionPerformed
 
     /**

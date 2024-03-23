@@ -194,7 +194,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         CheckIn in = new CheckIn();
         this.setVisible(false);
-        this.setVisible(true);
         in.setLocationRelativeTo(null);
         in.setVisible(true);
     }//GEN-LAST:event_CheckInActionPerformed
@@ -203,7 +202,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         CheckOut out = new CheckOut();
         this.setVisible(false);
-        this.setVisible(true);
         out.setLocationRelativeTo(null);
         out.setVisible(true);
     }//GEN-LAST:event_CheckOutActionPerformed
@@ -212,7 +210,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         BuscarHosp hosp = new BuscarHosp();
         this.setVisible(false);
-        this.setVisible(true);
         hosp.setLocationRelativeTo(null);
         hosp.setVisible(true);
     }//GEN-LAST:event_BuscarHospedadosActionPerformed
@@ -221,7 +218,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         BuscarReserva res = new BuscarReserva();
         this.setVisible(false);
-        this.setVisible(true);
         res.setLocationRelativeTo(null);
         res.setVisible(true);
     }//GEN-LAST:event_BuscarReservacionActionPerformed
@@ -230,7 +226,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         HistorialHab hab = new HistorialHab();
         this.setVisible(false);
-        this.setVisible(true);
         hab.setLocationRelativeTo(null);
         hab.setVisible(true);
     }//GEN-LAST:event_HistorialHabActionPerformed

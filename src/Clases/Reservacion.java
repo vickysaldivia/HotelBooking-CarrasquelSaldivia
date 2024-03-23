@@ -52,6 +52,11 @@ public class Reservacion {
     public void setSalida(String salida) {
         this.salida = salida;
     }
+
+    @Override
+    public String toString() {
+        return "Reservacion{" + "cliente=" + cliente.getCedula() + ", tipoHab=" + tipoHab + ", llegada=" + llegada + ", salida=" + salida + "\n";
+    }
     
     
     
