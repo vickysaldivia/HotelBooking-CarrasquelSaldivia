@@ -4,6 +4,15 @@
  */
 package Interfaces;
 
+import Clases.Estado;
+import Clases.Reservacion;
+import Funciones.helpers;
+import static Interfaces.Bienvenidos.hab_disponibles;
+import static Interfaces.Bienvenidos.habitaciones;
+import static Interfaces.Bienvenidos.hospedados;
+import static Interfaces.Bienvenidos.reservaciones;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Victoria Saldivia
@@ -159,9 +168,42 @@ public class CheckIn extends javax.swing.JFrame {
 
     private void CheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInActionPerformed
         
-        //Reservacion reservacion = (Reservacion) reservaciones.buscarNodo(ci, reservaciones.getNodoRaiz()).getDato();
-
-        //JOptionPane.showMessageDialog(null,reservaciones.Buscar_Nodo(reservaciones.getNodoRaiz(), ci).toString());
+        helpers help = new helpers();
+        String cedula = IDCliente.getText();
+        int ci = help.ValidarCedula(cedula);
+        int num_hosp = 0;
+       
+        
+        
+        if (reservaciones.buscarRecursivo(reservaciones.getNodoRaiz(), ci) != null){
+            Reservacion reservacion_actual = (Reservacion) reservaciones.buscarRecursivo(reservaciones.getNodoRaiz(), ci).getDato();
+            
+            for (int i = 0; i < hab_disponibles.getSize(); i++) {
+                int num_hab = (int) hab_disponibles.getValor(i); 
+                
+                if(habitaciones.searchByKey(num_hab).getTipoHab().equalsIgnoreCase(reservacion_actual.getTipoHab())){
+                    habitaciones.searchByKey(num_hab).setDispo(false);
+                    num_hosp = num_hab;
+                    break;
+                }   
+            }
+            
+            if(num_hosp != 0){
+                Estado estado = new Estado(reservacion_actual.getCliente(), reservacion_actual.getLlegada(), num_hosp);
+                hospedados.insertEstado(estado);
+                
+                hab_disponibles.eliminar();
+                
+                hospedados.Disponibles(hab_disponibles);
+                
+                JOptionPane.showMessageDialog(null,"El cliente " + estado.getCliente().getNombre() + " se hospedado en la habitacion "+ num_hosp);
+            }else{
+                JOptionPane.showMessageDialog(null,"No hay habitacion disponible del tipo que reservo");
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"No existe la reservacion");
+        }
     }//GEN-LAST:event_CheckInActionPerformed
 
     /**

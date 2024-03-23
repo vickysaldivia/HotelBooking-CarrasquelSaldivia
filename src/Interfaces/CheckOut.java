@@ -4,6 +4,12 @@
  */
 package Interfaces;
 
+import Clases.Cliente;
+import static Interfaces.Bienvenidos.hab_disponibles;
+import static Interfaces.Bienvenidos.habitaciones;
+import static Interfaces.Bienvenidos.hospedados;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Victoria Saldivia
@@ -236,7 +242,26 @@ public class CheckOut extends javax.swing.JFrame {
 
     private void CerrarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarRegistroActionPerformed
 
+        String nombre = NombreTexto.getText();
+        String apellido = ApellidoTexto.getText();
         
+        Cliente cliente = new Cliente(nombre, apellido);
+        
+     
+        if(hospedados.isInHashIndexN(cliente) != -1){
+            
+            habitaciones.searchByKey(hospedados.isInHashIndexN(cliente)).getHistorial().insertFinal(hospedados.isInHashEstado(cliente));
+            habitaciones.searchByKey(hospedados.isInHashIndexN(cliente)).setDispo(true);
+            hospedados.eliminarEstado(hospedados.isInHashIndexN(cliente));
+            
+            
+            hab_disponibles.eliminar();
+            
+            hospedados.Disponibles(hab_disponibles);
+          
+        }else{
+            JOptionPane.showMessageDialog(null,"El cliente no esta hospedado en el hotel");
+        }
     }//GEN-LAST:event_CerrarRegistroActionPerformed
 
     /**

@@ -7,12 +7,10 @@ package Funciones;
 import Clases.Cliente;
 import Clases.Estado;
 import Clases.Habitacion;
-import Clases.Historial;
 import Clases.Reservacion;
 import EDD.ABB;
+import EDD.AVL;
 import EDD.HashTable;
-import EDD.ListaDoble;
-import EDD.NodoAB;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.io.File;
@@ -52,7 +50,7 @@ public class ArchivoCSV {
                         
                         
                         if (!info[0].equalsIgnoreCase("")) {
-                            //if (help.ValidarCedula(info[0]) != -1 && help.validarEmail(info[3]) && help.validarTelf(info[5]) && help.validarFecha(info[7])) {
+                            //if (help.ValidarCedula(info[0]) != -1 && help.validarEmail(info[3]) && help.validarTelf(info[5]) && help.validarFecha(info[7]) && help.validarFecha(info[7])) {
                                 
                                 int cedula = help.ValidarCedula(info[0]);
                                 String nombre = info[1];
@@ -83,7 +81,7 @@ public class ArchivoCSV {
         }
     }
 
-    public void leer_historial(ABB historiales) {
+    public void leer_historial(AVL habitaciones) {
         String line;
         String expresion_txt = "";
         String path = "test//Historico.csv";
@@ -104,8 +102,8 @@ public class ArchivoCSV {
                     for (int i = 0; i < expresion_split.length - 1; i++) {
                         String[] info = expresion_split[i].split(",");
                         if (!info[0].equalsIgnoreCase("")) {
-                            if (help.validarCedula(info[0]) && help.validarEmail(info[3]) && help.validarFecha(info[5])) {
-                                int cedula = Integer.parseInt(info[0].replaceAll(".", ""));
+//                            if (help.validarCedula(info[0]) && help.validarEmail(info[3]) && help.validarFecha(info[55])) {
+                                int cedula = Integer.parseInt(info[0].replaceAll("\\.", ""));
                                 String nombre = info[1];
                                 String apellido = info[2];
                                 String email = info[3];
@@ -114,21 +112,12 @@ public class ArchivoCSV {
 
                                 Cliente cliente = new Cliente(nombre, apellido, cedula, email, genero);
 
-                                int num_hab = Integer.parseInt(info[0]);
+                                int num_hab = Integer.parseInt(info[6]);
                                 Estado estado = new Estado(cliente, llegada, num_hab);
 
-                                if (historiales.buscarNodo(num_hab, historiales.getNodoRaiz()) == null) {
-                                    ListaDoble estados = new ListaDoble();
-                                    estados.insertFinal(estado);
-                                    Historial historial = new Historial(num_hab, estados);
-
-                                    historiales.insertNodo(historiales.getNodoRaiz(), estado, num_hab);
-                                } else {
-
-                                    historiales.ModifHistorial(num_hab, historiales.getNodoRaiz(), estado);
-
-                                }
-                            }
+                                habitaciones.searchByKey(num_hab).getHistorial().insertFinal(estado);
+                               
+                            //}
                         }
 
                     }
@@ -190,7 +179,7 @@ public class ArchivoCSV {
         }
     }
 
-    public void leer_habitaciones(ListaDoble habitaciones) {
+    public void leer_habitaciones(AVL habitaciones) {
         String line;
         String expresion_txt = "";
         String path = "test//Habitaciones.csv";
@@ -204,7 +193,7 @@ public class ArchivoCSV {
                 while ((line = br.readLine()) != null) {
                     if (!line.isEmpty()) {
                         expresion_txt += line + "\n";
-                        System.out.println(line);
+                        
                     }
                 }
                 if (!"".equals(expresion_txt)) {
@@ -212,16 +201,16 @@ public class ArchivoCSV {
                     for (int i = 0; i < expresion_split.length; i++) {
                         String[] info = expresion_split[i].split(",");
                         if (!info[0].equalsIgnoreCase("")) {
-                            if (help.validarNumero(info[0]) && help.validarTipoHab(info[1]) && help.validarNumero(info[2]) ) {
+                            //if (help.validarNumero(info[0]) && help.validarTipoHab(info[1]) && help.validarNumero(info[2]) ) {
                                 int num_hab = Integer.parseInt(info[0]);
                                 String tipoHab = info[1];
                                 int piso = Integer.parseInt(info[2]);
                                 Habitacion habitacion = new Habitacion(num_hab, tipoHab, piso);
-                                habitaciones.insertFinal(habitacion);
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Hay un error en algun dato");
-                                break;
-                            }
+                                habitaciones.insertar(num_hab, habitacion);
+//                            } else {
+//                                JOptionPane.showMessageDialog(null, "Hay un error en algun dato");
+//                                break;
+//                            }
                         }
                     }
                 }

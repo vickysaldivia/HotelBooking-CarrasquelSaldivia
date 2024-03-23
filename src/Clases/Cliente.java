@@ -34,7 +34,6 @@ public class Cliente {
         this.celular = null;
     }
     
-    // Cliente sin cedula
     public Cliente(String nombre, String apellido, String email, String genero, String celular) {
         this.nombre = nombre;
         this.apellido = apellido;

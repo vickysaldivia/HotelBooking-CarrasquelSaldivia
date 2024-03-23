@@ -6,7 +6,6 @@ package EDD;
 
 import Clases.Estado;
 import Clases.Historial;
-import Clases.Reservacion;
 import javax.swing.JOptionPane;
 
 /**

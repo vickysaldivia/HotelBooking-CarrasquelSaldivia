@@ -4,8 +4,6 @@
  */
 package EDD;
 
-import Clases.Estado;
-
 /**
  *
  * @author Victoria Saldivia

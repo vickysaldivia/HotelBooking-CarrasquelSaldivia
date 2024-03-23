@@ -4,6 +4,8 @@
  */
 package Clases;
 
+import EDD.ListaDoble;
+
 /**
  *
  * @author Ramón Carrasquel
@@ -13,12 +15,14 @@ public class Habitacion {
     private String tipoHab;
     private int piso;
     private boolean dispo;
+    private ListaDoble historial;
 
-    public Habitacion(int numHab, String tipoHab, int piso, boolean dispo) {
+    public Habitacion(int numHab, String tipoHab, int piso, boolean dispo, ListaDoble historial) {
         this.numHab = numHab;
         this.tipoHab = tipoHab;
         this.piso = piso;
         this.dispo = dispo;
+        this.historial = new ListaDoble();
     }
     
     public Habitacion(int numHab, String tipoHab, int piso) {
@@ -26,6 +30,7 @@ public class Habitacion {
         this.tipoHab = tipoHab;
         this.piso = piso;
         this.dispo = false;
+        this.historial = new ListaDoble();
     }
 
     public int getNumHab() {
@@ -58,6 +63,29 @@ public class Habitacion {
 
     public void setDispo(boolean dispo) {
         this.dispo = dispo;
+    }
+
+    public ListaDoble getHistorial() {
+        return historial;
+    }
+
+    public void setHistorial(ListaDoble historial) {
+        this.historial = historial;
+    }
+
+    @Override
+    public String toString() {
+        return "Habitacion{" + "numHab=" + numHab + ", tipoHab=" + tipoHab + ", piso=" + piso + ", dispo=" + dispo;
+    }
+    
+    public void mostrar_hitorial(){
+        
+        if(!historial.isEmpty()){
+            historial.printList();
+        }else{
+            System.out.println("No hay historial");
+        }
+    
     }
     
 }
