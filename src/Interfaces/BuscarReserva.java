@@ -170,7 +170,6 @@ public class BuscarReserva extends javax.swing.JFrame {
         
         
         System.out.println(ci);
-        int count = 0;
         //System.out.println(reservaciones.buscarNodo(ci, reservaciones.getNodoRaiz()).getDato().toString());
         //System.out.println(reservaciones.buscarNodo2(ci, reservaciones.getNodoRaiz()).getDato().toString());
         

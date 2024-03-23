@@ -4,6 +4,9 @@
  */
 package Interfaces;
 
+import static Interfaces.Bienvenidos.habitaciones;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Victoria Saldivia
@@ -124,6 +127,16 @@ public class HistorialHab extends javax.swing.JFrame {
 
     private void SeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionActionPerformed
         // TODO add your handling code here:
+                String num_hab_select = Seleccion.getText();
+        int num_hab = Integer.parseInt(num_hab_select);
+        
+        if(habitaciones.searchByKey(num_hab) != null){
+            
+            habitaciones.searchByKey(num_hab).mostrar_hitorial();
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "La hbaitacion no es valida");
+        }
     }//GEN-LAST:event_SeleccionActionPerformed
 
     /**

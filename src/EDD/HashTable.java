@@ -95,6 +95,18 @@ public class HashTable {
         return -1;
     }
     
+    public Estado isInHashEstado(Cliente cliente){
+        for (int i = 0; i < this.getEstado().length; i++) {
+            if (getEstado()[i] != null){
+                if (getEstado()[i].getCliente().getNombre().equalsIgnoreCase(cliente.getNombre()) && getEstado()[i].getCliente().getApellido().equalsIgnoreCase(cliente.getApellido())){
+                    return getEstado()[i];
+                }
+            }
+        }
+        
+        return null;
+    }
+    
     public void Disponibles(ListaDoble hab_disp){
         for (int i = 1; i < this.getEstado().length; i++) {
             if (getEstado()[i] == null){
@@ -102,4 +114,18 @@ public class HashTable {
             }
         }
     }
+    
+    public void eliminarEstado(int numHab) {
+    int index = numHab;
+    if (index >= 0 && index < size) {
+        if (estado[index] != null) {
+            estado[index] = null;
+            System.out.println("Estado eliminado exitosamente.");
+        } else {
+            System.out.println("No se encontró un Estado en la posición: " + index);
+        }
+    } else {
+        System.out.println("Número de habitación fuera de rango.");
+    }
+}
 }

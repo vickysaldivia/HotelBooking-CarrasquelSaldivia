@@ -6,7 +6,9 @@ package Interfaces;
 
 import Clases.Cliente;
 import EDD.ABB;
+import EDD.AVL;
 import EDD.HashTable;
+import EDD.ListaDoble;
 import Funciones.ArchivoCSV;
 
 /**
@@ -17,6 +19,8 @@ public class Bienvenidos extends javax.swing.JFrame {
 
     public static HashTable hospedados = new HashTable();
     public static ABB reservaciones =  new ABB();
+    public static AVL habitaciones = new AVL();
+    public static ListaDoble hab_disponibles = new ListaDoble();
     
     public Bienvenidos() {
         
@@ -98,10 +102,27 @@ public class Bienvenidos extends javax.swing.JFrame {
         ArchivoCSV archivo = new ArchivoCSV();
         archivo.Leer_Estado(hospedados);
         archivo.leer_reservaciones(reservaciones);
-        String cadena = "";
+        archivo.leer_habitaciones(habitaciones);
+        archivo.leer_historial(habitaciones);
+        
+        hospedados.Disponibles(hab_disponibles);
+        
+        for (int i = 0; i < hab_disponibles.getSize(); i++) {
+            int num_hab = (int) hab_disponibles.getValor(i); 
+            habitaciones.searchByKey(num_hab).setDispo(true);
+        }
+        
+        //habitaciones.inOrden();
+        
+        
+       //hab_disponibles.printList();
+       
+       
+       //habitaciones.searchByKey(277).mostrar_hitorial();
+
+        
         //System.out.println(reservaciones.preOrden2(reservaciones.getNodoRaiz(), cadena));
        
-        
                 
         Menu VentanaMenu = new Menu();
         

@@ -50,7 +50,7 @@ public class Estado {
 
     @Override
     public String toString() {
-        return "Estado{" + "cliente=" + cliente.getNombre() + ", llegada=" + llegada + ", numHab=" + numHab + '}';
+        return "Cliente:" + cliente.getNombre() + " "+ cliente.getApellido() +", " + cliente.getCedula()+ "\nFecha de llegada: " + llegada + "\nNumero de Habitacion: " + numHab + '}';
     }
     
     
