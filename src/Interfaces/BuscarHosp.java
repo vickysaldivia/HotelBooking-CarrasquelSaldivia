@@ -4,6 +4,10 @@
  */
 package Interfaces;
 
+import Clases.Cliente;
+import static Interfaces.Bienvenidos.hospedados;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Victoria Saldivia
@@ -101,16 +105,48 @@ public class BuscarHosp extends javax.swing.JFrame {
         jLabel5.setText("Datos del Cliente:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 240, -1));
 
-        ApellidoTexto.setBackground(null);
+        ApellidoTexto.setBackground(new java.awt.Color(255, 255, 255));
         ApellidoTexto.setForeground(new java.awt.Color(0, 0, 0));
         ApellidoTexto.setText("Introduzca el apellido...");
         ApellidoTexto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.white, java.awt.Color.white, java.awt.Color.blue));
+        ApellidoTexto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ApellidoTextoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ApellidoTextoFocusLost(evt);
+            }
+        });
+        ApellidoTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ApellidoTextoKeyTyped(evt);
+            }
+        });
         jPanel1.add(ApellidoTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 220, -1));
 
-        NombreTexto.setBackground(null);
+        NombreTexto.setBackground(new java.awt.Color(255, 255, 255));
         NombreTexto.setForeground(new java.awt.Color(0, 0, 0));
         NombreTexto.setText("Introduzca el nombre...");
         NombreTexto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.white, java.awt.Color.white, java.awt.Color.blue));
+        NombreTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        NombreTexto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                NombreTextoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NombreTextoFocusLost(evt);
+            }
+        });
+        NombreTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreTextoActionPerformed(evt);
+            }
+        });
+        NombreTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombreTextoKeyTyped(evt);
+            }
+        });
         jPanel1.add(NombreTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 220, -1));
 
         DisplayScreen.setEditable(false);
@@ -137,7 +173,18 @@ public class BuscarHosp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        // TODO add your handling code here:
+        
+        String nombre = NombreTexto.getText();
+        String apellido = ApellidoTexto.getText();
+        
+        Cliente cliente = new Cliente(nombre, apellido);
+        
+     
+        if(hospedados.isInHashIndexN(cliente) != -1){
+          JOptionPane.showMessageDialog(null,"El cliente" + cliente.getNombre() + " "+ cliente.getApellido() + " esta hospedado en la habitacion " + hospedados.isInHashIndexN(cliente));
+        }else{
+            JOptionPane.showMessageDialog(null,"El cliente no esta hospedado en el hotel");
+        }
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -148,6 +195,54 @@ public class BuscarHosp extends javax.swing.JFrame {
         VentanaMenu.setLocationRelativeTo(null);
         VentanaMenu.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
+
+    private void NombreTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTextoKeyTyped
+        // TODO add your handling code here:
+        char key = evt.getKeyChar(); 
+        boolean esLetra = Character.isLetter(key) || key == 'á' || key == 'é' || key == 'í' || key == 'ó' || key == 'ú' || key == 'ü' || key == 'ñ' || key == 'Á' || key == 'É' || key == 'Í' || key == 'Ó' || key == 'Ú' || key == 'Ü' || key == 'Ñ';
+        if (!esLetra) { 
+            evt.consume(); 
+        }
+
+    }//GEN-LAST:event_NombreTextoKeyTyped
+
+    private void ApellidoTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoTextoKeyTyped
+        // TODO add your handling code here:
+        char key = evt.getKeyChar(); 
+        boolean esLetra = Character.isLetter(key) || key == 'á' || key == 'é' || key == 'í' || key == 'ó' || key == 'ú' || key == 'ü' || key == 'ñ' || key == 'Á' || key == 'É' || key == 'Í' || key == 'Ó' || key == 'Ú' || key == 'Ü' || key == 'Ñ';
+        if (!esLetra) { 
+            evt.consume(); 
+        }
+
+    }//GEN-LAST:event_ApellidoTextoKeyTyped
+
+    private void NombreTextoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreTextoFocusGained
+        // TODO add your handling code here:
+        NombreTexto.setText("");
+    }//GEN-LAST:event_NombreTextoFocusGained
+
+    private void ApellidoTextoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ApellidoTextoFocusGained
+        // TODO add your handling code here:
+        ApellidoTexto.setText("");
+    }//GEN-LAST:event_ApellidoTextoFocusGained
+
+    private void NombreTextoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreTextoFocusLost
+        // TODO add your handling code here:
+        if(NombreTexto.getText().isBlank()){
+            NombreTexto.setText("Introduzca el nombre...");
+        }
+    }//GEN-LAST:event_NombreTextoFocusLost
+
+    private void NombreTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreTextoActionPerformed
+
+    private void ApellidoTextoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ApellidoTextoFocusLost
+        // TODO add your handling code here:
+        if(ApellidoTexto.getText().isBlank()){
+            ApellidoTexto.setText("Introduzca el apellido...");
+        }
+    }//GEN-LAST:event_ApellidoTextoFocusLost
 
     /**
      * @param args the command line arguments

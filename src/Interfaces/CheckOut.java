@@ -13,6 +13,7 @@ public class CheckOut extends javax.swing.JFrame {
     /**
      * Creates new form CheckOut
      */
+    
     public CheckOut() {
         initComponents();
     }
@@ -30,6 +31,16 @@ public class CheckOut extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         Back = new javax.swing.JButton();
+        NombreTexto = new javax.swing.JTextField();
+        ApellidoTexto = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        CerrarRegistro = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        HabHabilitada = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        MensajeCierreExitoso1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,7 +54,7 @@ public class CheckOut extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("CHECK - OUT");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 390, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 390, -1));
 
         Back.setBackground(new java.awt.Color(255, 255, 255));
         Back.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
@@ -56,7 +67,103 @@ public class CheckOut extends javax.swing.JFrame {
         });
         jPanel2.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 50));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 70));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 70));
+
+        NombreTexto.setBackground(new java.awt.Color(255, 255, 255));
+        NombreTexto.setForeground(new java.awt.Color(0, 0, 0));
+        NombreTexto.setText("Introduzca el nombre...");
+        NombreTexto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.white, java.awt.Color.white, java.awt.Color.blue));
+        NombreTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        NombreTexto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                NombreTextoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NombreTextoFocusLost(evt);
+            }
+        });
+        NombreTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreTextoActionPerformed(evt);
+            }
+        });
+        NombreTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombreTextoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(NombreTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 220, -1));
+
+        ApellidoTexto.setBackground(new java.awt.Color(255, 255, 255));
+        ApellidoTexto.setForeground(new java.awt.Color(0, 0, 0));
+        ApellidoTexto.setText("Introduzca el apellido...");
+        ApellidoTexto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.white, java.awt.Color.white, java.awt.Color.blue));
+        ApellidoTexto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ApellidoTextoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ApellidoTextoFocusLost(evt);
+            }
+        });
+        ApellidoTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ApellidoTextoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(ApellidoTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 220, -1));
+
+        jLabel1.setBackground(new java.awt.Color(0, 51, 139));
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 139));
+        jLabel1.setText("Apellido:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 60, -1));
+
+        jLabel3.setBackground(new java.awt.Color(0, 51, 139));
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 139));
+        jLabel3.setText("Nombre:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 60, -1));
+
+        jLabel5.setBackground(new java.awt.Color(0, 51, 139));
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 139));
+        jLabel5.setText("Habitación Habilitada:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 240, -1));
+
+        CerrarRegistro.setBackground(new java.awt.Color(0, 51, 139));
+        CerrarRegistro.setText("Cerrar Registro");
+        CerrarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarRegistroActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CerrarRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 230, -1));
+
+        jSeparator1.setForeground(new java.awt.Color(0, 51, 139));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 450, -1));
+
+        HabHabilitada.setEditable(false);
+        HabHabilitada.setBackground(new java.awt.Color(255, 255, 255));
+        HabHabilitada.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        HabHabilitada.setForeground(new java.awt.Color(0, 51, 139));
+        HabHabilitada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        HabHabilitada.setFocusable(false);
+        jPanel1.add(HabHabilitada, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 280, -1));
+
+        jLabel6.setBackground(new java.awt.Color(0, 51, 139));
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 139));
+        jLabel6.setText("Datos del Cliente:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 240, -1));
+
+        MensajeCierreExitoso1.setEditable(false);
+        MensajeCierreExitoso1.setBackground(new java.awt.Color(255, 255, 255));
+        MensajeCierreExitoso1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        MensajeCierreExitoso1.setForeground(new java.awt.Color(0, 51, 139));
+        MensajeCierreExitoso1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MensajeCierreExitoso1.setFocusable(false);
+        jPanel1.add(MensajeCierreExitoso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,6 +187,57 @@ public class CheckOut extends javax.swing.JFrame {
         VentanaMenu.setLocationRelativeTo(null);
         VentanaMenu.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
+
+    private void NombreTextoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreTextoFocusGained
+        // TODO add your handling code here:
+        NombreTexto.setText("");
+    }//GEN-LAST:event_NombreTextoFocusGained
+
+    private void NombreTextoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreTextoFocusLost
+        // TODO add your handling code here:
+        if(NombreTexto.getText().isBlank()){
+            NombreTexto.setText("Introduzca el nombre...");
+        }
+    }//GEN-LAST:event_NombreTextoFocusLost
+
+    private void NombreTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreTextoActionPerformed
+
+    private void NombreTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTextoKeyTyped
+        // TODO add your handling code here:
+        char key = evt.getKeyChar();
+        boolean esLetra = Character.isLetter(key) || key == 'á' || key == 'é' || key == 'í' || key == 'ó' || key == 'ú' || key == 'ü' || key == 'ñ' || key == 'Á' || key == 'É' || key == 'Í' || key == 'Ó' || key == 'Ú' || key == 'Ü' || key == 'Ñ';
+        if (!esLetra) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_NombreTextoKeyTyped
+
+    private void ApellidoTextoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ApellidoTextoFocusGained
+        // TODO add your handling code here:
+        ApellidoTexto.setText("");
+    }//GEN-LAST:event_ApellidoTextoFocusGained
+
+    private void ApellidoTextoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ApellidoTextoFocusLost
+        // TODO add your handling code here:
+        if(ApellidoTexto.getText().isBlank()){
+            ApellidoTexto.setText("Introduzca el apellido...");
+        }
+    }//GEN-LAST:event_ApellidoTextoFocusLost
+
+    private void ApellidoTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoTextoKeyTyped
+        // TODO add your handling code here:
+        char key = evt.getKeyChar();
+        boolean esLetra = Character.isLetter(key) || key == 'á' || key == 'é' || key == 'í' || key == 'ó' || key == 'ú' || key == 'ü' || key == 'ñ' || key == 'Á' || key == 'É' || key == 'Í' || key == 'Ó' || key == 'Ú' || key == 'Ü' || key == 'Ñ';
+        if (!esLetra) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_ApellidoTextoKeyTyped
+
+    private void CerrarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarRegistroActionPerformed
+
+        
+    }//GEN-LAST:event_CerrarRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,9 +275,19 @@ public class CheckOut extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ApellidoTexto;
     private javax.swing.JButton Back;
+    private javax.swing.JButton CerrarRegistro;
+    private javax.swing.JTextField HabHabilitada;
+    private javax.swing.JTextField MensajeCierreExitoso1;
+    private javax.swing.JTextField NombreTexto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

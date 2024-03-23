@@ -12,7 +12,7 @@ import Clases.Estado;
  */
 public class NodoAB {
     private int num;
-        private Object dato;
+    private Object dato;
     private NodoAB HijoIzq;
     private NodoAB HijoDer;
     private NodoAB father;
