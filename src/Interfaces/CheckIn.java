@@ -97,6 +97,16 @@ public class CheckIn extends javax.swing.JFrame {
 
         IDCliente.setBackground(new java.awt.Color(255, 255, 255));
         IDCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
+        IDCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IDClienteActionPerformed(evt);
+            }
+        });
+        IDCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                IDClienteKeyTyped(evt);
+            }
+        });
         jPanel1.add(IDCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 180, -1));
 
         DisplayEstadía.setEditable(false);
@@ -205,6 +215,20 @@ public class CheckIn extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"No existe la reservacion");
         }
     }//GEN-LAST:event_CheckInActionPerformed
+
+    private void IDClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDClienteActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_IDClienteActionPerformed
+
+    private void IDClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDClienteKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numero = key >=48 && key <= 57;
+        if(!numero){
+            evt.consume();
+        }
+    }//GEN-LAST:event_IDClienteKeyTyped
 
     /**
      * @param args the command line arguments

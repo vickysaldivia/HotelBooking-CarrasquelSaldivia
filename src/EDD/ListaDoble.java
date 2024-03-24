@@ -4,6 +4,7 @@
  */
 package EDD;
 
+import Clases.Estado;
 import javax.swing.JOptionPane;
 
 /**
@@ -377,5 +378,44 @@ public class ListaDoble {
         tail = null;
         size = 0;
     }
+    public String toString2() {
+        if (size == 0) {
+            return "[]";
+        } else {
+            StringBuilder sb = new StringBuilder("[");
+            Nodo temp = head;
+            
+            while (temp != null) {
+                sb.append(temp.toString()).append(", ");
+                temp = temp.getNext();
+            }
+            sb.setLength(sb.length() - 2); // para eliminar la última coma y espacio
+            sb.append("]");
+            return sb.toString();
+        }
+    }
     
-}
+    public String ListaHist_String() {
+        if (size == 0) {
+            return null;
+        } else {
+            String historial = "";
+            Nodo objeto = this.head;
+            int i = 1;
+            while(objeto != null){
+                Estado dato = (Estado) objeto.getElement();
+                if(objeto.getNext() != null){
+                    historial += i + ") CLIENTE: " + dato.getCliente().getNombre() + " " + dato.getCliente().getApellido() + "\nFECHA DE LLEGADA: " + dato.getLlegada() + "\n\n";
+
+                }else{
+                    historial += i + ") CLIENTE: " + dato.getCliente().getNombre() + " " + dato.getCliente().getApellido() + "\nFECHA DE LLEGADA: " + dato.getLlegada();
+                }
+                objeto = objeto.getNext();
+                i += 1;
+            }
+            return historial;
+            }
+        }
+    }
+    
+

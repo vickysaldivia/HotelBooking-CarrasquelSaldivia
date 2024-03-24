@@ -5,6 +5,7 @@
 package Interfaces;
 
 import Clases.Reservacion;
+import Funciones.Busqueda;
 import Funciones.helpers;
 import static Interfaces.Bienvenidos.reservaciones;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ public class BuscarReserva extends javax.swing.JFrame {
     /**
      * Creates new form BuscarReserva
      */
+    Busqueda busqueda = new Busqueda();
     public BuscarReserva() {
         initComponents();
     }
@@ -100,6 +102,7 @@ public class BuscarReserva extends javax.swing.JFrame {
 
         ClienteDisplay.setBackground(new java.awt.Color(255, 255, 255));
         ClienteDisplay.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
+        ClienteDisplay.setForeground(new java.awt.Color(0, 0, 0));
         ClienteDisplay.setFocusable(false);
         jScrollPane1.setViewportView(ClienteDisplay);
 
@@ -113,6 +116,7 @@ public class BuscarReserva extends javax.swing.JFrame {
 
         ReservaDisplay.setBackground(new java.awt.Color(255, 255, 255));
         ReservaDisplay.setColumns(20);
+        ReservaDisplay.setForeground(new java.awt.Color(0, 0, 0));
         ReservaDisplay.setRows(5);
         ReservaDisplay.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
         ReservaDisplay.setFocusable(false);
@@ -137,6 +141,16 @@ public class BuscarReserva extends javax.swing.JFrame {
 
         IDCliente.setBackground(new java.awt.Color(255, 255, 255));
         IDCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
+        IDCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IDClienteActionPerformed(evt);
+            }
+        });
+        IDCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                IDClienteKeyTyped(evt);
+            }
+        });
         jPanel1.add(IDCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,20 +184,31 @@ public class BuscarReserva extends javax.swing.JFrame {
         
         
         System.out.println(ci);
-        //System.out.println(reservaciones.buscarNodo(ci, reservaciones.getNodoRaiz()).getDato().toString());
-        //System.out.println(reservaciones.buscarNodo2(ci, reservaciones.getNodoRaiz()).getDato().toString());
-        
+       
         if (reservaciones.buscarRecursivo(reservaciones.getNodoRaiz(), ci) != null){
-            JOptionPane.showMessageDialog(null,reservaciones.buscarRecursivo(reservaciones.getNodoRaiz(), ci).getDato().toString());
+            String cadena = busqueda.buscarReservacion(reservaciones.buscarRecursivo(reservaciones.getNodoRaiz(), ci));
+            String partes[] = cadena.split("RESERVA");
+            ClienteDisplay.setText(partes[0]);
+            ReservaDisplay.setText(partes[1]);
         }else{
             JOptionPane.showMessageDialog(null,"No existe la reservacion");
         }
         
-        //System.out.println(reservaciones.buscarRecursivo(reservaciones.getNodoRaiz(), ci).getDato().toString());
-        //Reservacion reservacion = (Reservacion) reservaciones.buscarNodo(ci, reservaciones.getNodoRaiz()).getDato();
         
-        //JOptionPane.showMessageDialog(null,reservaciones.Buscar_Nodo(reservaciones.getNodoRaiz(), ci).toString());
     }//GEN-LAST:event_BuscarReservaActionPerformed
+
+    private void IDClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IDClienteActionPerformed
+
+    private void IDClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDClienteKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numero = key >=48 && key <= 57;
+        if(!numero){
+            evt.consume();
+        }
+    }//GEN-LAST:event_IDClienteKeyTyped
 
     /**
      * @param args the command line arguments

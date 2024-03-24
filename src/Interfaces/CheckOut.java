@@ -196,7 +196,9 @@ public class CheckOut extends javax.swing.JFrame {
 
     private void NombreTextoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreTextoFocusGained
         // TODO add your handling code here:
-        NombreTexto.setText("");
+        if(NombreTexto.getText().isBlank() || NombreTexto.getText().equalsIgnoreCase("Introduzca el nombre...")){
+            NombreTexto.setText("");
+        }
     }//GEN-LAST:event_NombreTextoFocusGained
 
     private void NombreTextoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreTextoFocusLost
@@ -221,7 +223,9 @@ public class CheckOut extends javax.swing.JFrame {
 
     private void ApellidoTextoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ApellidoTextoFocusGained
         // TODO add your handling code here:
-        ApellidoTexto.setText("");
+        if(ApellidoTexto.getText().isBlank() || ApellidoTexto.getText().equalsIgnoreCase("Introduzca el apellido...")){
+            ApellidoTexto.setText("");
+        }
     }//GEN-LAST:event_ApellidoTextoFocusGained
 
     private void ApellidoTextoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ApellidoTextoFocusLost

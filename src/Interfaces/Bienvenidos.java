@@ -42,6 +42,7 @@ public class Bienvenidos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         IngresarMenu = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +84,16 @@ public class Bienvenidos extends javax.swing.JFrame {
         });
         jPanel1.add(IngresarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, 30));
 
+        jButton1.setBackground(new java.awt.Color(0, 51, 139));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("X");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,8 +127,8 @@ public class Bienvenidos extends javax.swing.JFrame {
         
         
        //hab_disponibles.printList();
-       
-       
+
+        //System.out.println(hospedados.getEstado()[277].getCliente().getNombre());
        //habitaciones.searchByKey(277).mostrar_hitorial();
 
         
@@ -131,6 +142,12 @@ public class Bienvenidos extends javax.swing.JFrame {
         VentanaMenu.setVisible(true);
         
     }//GEN-LAST:event_IngresarMenuActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,6 +186,7 @@ public class Bienvenidos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton IngresarMenu;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

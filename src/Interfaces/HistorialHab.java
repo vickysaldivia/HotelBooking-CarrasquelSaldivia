@@ -81,6 +81,11 @@ public class HistorialHab extends javax.swing.JFrame {
                 SeleccionActionPerformed(evt);
             }
         });
+        Seleccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                SeleccionKeyTyped(evt);
+            }
+        });
         jPanel1.add(Seleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 150, -1));
 
         HistHab.setBackground(new java.awt.Color(255, 255, 255));
@@ -100,6 +105,11 @@ public class HistorialHab extends javax.swing.JFrame {
 
         BuscarHistorial.setBackground(new java.awt.Color(0, 51, 139));
         BuscarHistorial.setText("Buscar");
+        BuscarHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarHistorialActionPerformed(evt);
+            }
+        });
         jPanel1.add(BuscarHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 97, 80, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -127,17 +137,31 @@ public class HistorialHab extends javax.swing.JFrame {
 
     private void SeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionActionPerformed
         // TODO add your handling code here:
+        
+    }//GEN-LAST:event_SeleccionActionPerformed
+
+    private void BuscarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarHistorialActionPerformed
+        // TODO add your handling code here:
                 String num_hab_select = Seleccion.getText();
         int num_hab = Integer.parseInt(num_hab_select);
         
         if(habitaciones.searchByKey(num_hab) != null){
             
-            habitaciones.searchByKey(num_hab).mostrar_hitorial();
+            HistHab.setText(habitaciones.searchByKey(num_hab).getHistorial().ListaHist_String());
         
         }else{
-            JOptionPane.showMessageDialog(null, "La hbaitacion no es valida");
+            JOptionPane.showMessageDialog(null, "La habitacion no es valida");
         }
-    }//GEN-LAST:event_SeleccionActionPerformed
+    }//GEN-LAST:event_BuscarHistorialActionPerformed
+
+    private void SeleccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SeleccionKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numero = key >=48 && key <= 57;
+        if(!numero){
+            evt.consume();
+        }
+    }//GEN-LAST:event_SeleccionKeyTyped
 
     /**
      * @param args the command line arguments

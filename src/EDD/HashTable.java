@@ -95,6 +95,7 @@ public class HashTable {
         return -1;
     }
     
+    
     public Estado isInHashEstado(Cliente cliente){
         for (int i = 0; i < this.getEstado().length; i++) {
             if (getEstado()[i] != null){

@@ -41,54 +41,54 @@ public class helpers {
         }    
     }
     
-    public boolean validarFecha(String date){
+    public String validarFecha(String date){
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         df.setLenient(false);
         try {
           df.parse(date);
         } catch (Exception e) {
-          return false;
+          return null;
         }
-        return true;
+        return date;
     }
     
-    public String validarFecha2(String fecha) {
-        if (fecha.length() != 10) {
-            return null;
-        }
-        if (fecha.charAt(2) != '/' || fecha.charAt(5) != '/') {
-            return null;
-        }
-
-        String dayStr = fecha.substring(0, 2);
-        String monthStr = fecha.substring(3, 5);
-        String yearStr = fecha.substring(6);
-
-        try {
-            int day = Integer.parseInt(dayStr);
-            int month = Integer.parseInt(monthStr);
-            int year = Integer.parseInt(yearStr);
-            
-            if (day < 1 || day > 31 || month < 1 || month > 12 || month < 1000 || year > 9999) {
-                return null;
-            }
-            // Verificar que el día sea válido para el mes dado
-            if ((month == 4 || month == 6 || month == 9 || month == 11) && month > 30) {
-                return null;
-            }
-            if (month == 2) {
-                // Verificar si el año es bisiesto
-                boolean bisiesto = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-                if ((bisiesto && day > 29) || (!bisiesto && day > 28)) {
-                    return null;
-                }
-            }
-            return fecha;
-        } catch (NumberFormatException e) {
-            return null;
-        }
-
-    }
+//    public String validarFecha2(String fecha) {
+//        if (fecha.length() != 10) {
+//            return null;
+//        }
+//        if (fecha.charAt(2) != '/' || fecha.charAt(5) != '/') {
+//            return null;
+//        }
+//
+//        String dayStr = fecha.substring(0, 2);
+//        String monthStr = fecha.substring(3, 5);
+//        String yearStr = fecha.substring(6);
+//
+//        try {
+//            int day = Integer.parseInt(dayStr);
+//            int month = Integer.parseInt(monthStr);
+//            int year = Integer.parseInt(yearStr);
+//            
+//            if (day < 1 || day > 31 || month < 1 || month > 12 || month < 1000 || year > 9999) {
+//                return null;
+//            }
+//            // Verificar que el día sea válido para el mes dado
+//            if ((month == 4 || month == 6 || month == 9 || month == 11) && month > 30) {
+//                return null;
+//            }
+//            if (month == 2) {
+//                // Verificar si el año es bisiesto
+//                boolean bisiesto = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+//                if ((bisiesto && day > 29) || (!bisiesto && day > 28)) {
+//                    return null;
+//                }
+//            }
+//            return fecha;
+//        } catch (NumberFormatException e) {
+//            return null;
+//        }
+//
+//    }
     
     public boolean validarTipoHab(String tipoHab){
         if(tipoHab.equals("simple") && tipoHab.equals("doble") && tipoHab.equals("triple") && tipoHab.equals("suite")){

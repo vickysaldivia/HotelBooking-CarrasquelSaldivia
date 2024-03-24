@@ -5,6 +5,7 @@
 package Interfaces;
 
 import Clases.Cliente;
+import Funciones.Busqueda;
 import static Interfaces.Bienvenidos.hospedados;
 import javax.swing.JOptionPane;
 
@@ -17,6 +18,8 @@ public class BuscarHosp extends javax.swing.JFrame {
     /**
      * Creates new form BuscarHosp
      */
+    
+    Busqueda busqueda = new Busqueda();
     public BuscarHosp() {
         initComponents();
     }
@@ -152,7 +155,7 @@ public class BuscarHosp extends javax.swing.JFrame {
         DisplayScreen.setEditable(false);
         DisplayScreen.setBackground(new java.awt.Color(255, 255, 255));
         DisplayScreen.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
-        DisplayScreen.setForeground(new java.awt.Color(204, 204, 204));
+        DisplayScreen.setForeground(new java.awt.Color(0, 0, 0));
         DisplayScreen.setFocusable(false);
         jScrollPane1.setViewportView(DisplayScreen);
 
@@ -181,7 +184,7 @@ public class BuscarHosp extends javax.swing.JFrame {
         
      
         if(hospedados.isInHashIndexN(cliente) != -1){
-          JOptionPane.showMessageDialog(null,"El cliente" + cliente.getNombre() + " "+ cliente.getApellido() + " esta hospedado en la habitacion " + hospedados.isInHashIndexN(cliente));
+            DisplayScreen.setText(busqueda.buscarHospedado(cliente, hospedados, hospedados.isInHashIndexN(cliente)));
         }else{
             JOptionPane.showMessageDialog(null,"El cliente no esta hospedado en el hotel");
         }
@@ -218,12 +221,16 @@ public class BuscarHosp extends javax.swing.JFrame {
 
     private void NombreTextoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreTextoFocusGained
         // TODO add your handling code here:
-        NombreTexto.setText("");
+        if(NombreTexto.getText().isBlank() || NombreTexto.getText().equalsIgnoreCase("Introduzca el nombre...")){
+            NombreTexto.setText("");
+        }
     }//GEN-LAST:event_NombreTextoFocusGained
 
     private void ApellidoTextoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ApellidoTextoFocusGained
         // TODO add your handling code here:
-        ApellidoTexto.setText("");
+        if(ApellidoTexto.getText().isBlank() || ApellidoTexto.getText().equalsIgnoreCase("Introduzca el apellido...")){
+            ApellidoTexto.setText("");
+        }
     }//GEN-LAST:event_ApellidoTextoFocusGained
 
     private void NombreTextoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreTextoFocusLost
