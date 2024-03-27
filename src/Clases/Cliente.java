@@ -99,6 +99,23 @@ public class Cliente {
         this.celular = celular;
     }
     
-    
+    public String cedulaFormat() {
+        String numeroStr = String.valueOf(cedula);
+        String resultado = "";
+        int contador = 0;
+
+        // Recorremos la cadena de caracteres del número de atrás hacia adelante
+        for (int i = numeroStr.length() - 1; i >= 0; i--) {
+            resultado = numeroStr.charAt(i) + resultado;
+            contador++;
+            // Cada tres dígitos, añadimos un punto, excepto al final
+            if (contador == 3 && i != 0) {
+                resultado = "." + resultado;
+                contador = 0; // Reseteamos el contador cada tres dígitos
+            }
+        }
+
+        return resultado;
+    }
     
 }

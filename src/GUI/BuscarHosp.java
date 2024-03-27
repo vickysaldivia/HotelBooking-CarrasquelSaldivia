@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaces;
+package GUI;
 
 import Clases.Cliente;
 import Funciones.Busqueda;
-import static Interfaces.Bienvenidos.hospedados;
+import static GUI.Bienvenidos.hospedados;
 import javax.swing.JOptionPane;
 
 /**

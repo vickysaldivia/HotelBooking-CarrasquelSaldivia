@@ -53,11 +53,12 @@ public class Reservacion {
         this.salida = salida;
     }
 
-    @Override
-    public String toString() {
+    public String toString1() {
         return "Reservacion{" + "cliente=" + cliente.getCedula() + ", tipoHab=" + tipoHab + ", llegada=" + llegada + ", salida=" + salida + "\n";
     }
     
-    
+    public String toString(){
+        return cliente.getNombre() + "," + cliente.getApellido() + "," + cliente.getEmail() + "," + cliente.getGenero() + "," + tipoHab + "," + cliente.getCelular() + "," + llegada + "," + salida;
+    }
     
 }

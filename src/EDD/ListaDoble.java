@@ -4,6 +4,7 @@
  */
 package EDD;
 
+import Clases.Cliente;
 import Clases.Estado;
 import javax.swing.JOptionPane;
 
@@ -404,11 +405,17 @@ public class ListaDoble {
             int i = 1;
             while(objeto != null){
                 Estado dato = (Estado) objeto.getElement();
-                if(objeto.getNext() != null){
-                    historial += i + ") CLIENTE: " + dato.getCliente().getNombre() + " " + dato.getCliente().getApellido() + "\nFECHA DE LLEGADA: " + dato.getLlegada() + "\n\n";
+                historial += i + ") CLIENTE: " + dato.getCliente().getNombre() + " " + dato.getCliente().getApellido() + "\nFECHA DE LLEGADA: " + dato.getLlegada();
+                if(dato.getAcompañantes().getSize() != 0){
+                    historial += "\nACOMPAÑANTES:\n";
+                    for (int j = 0; j < dato.getAcompañantes().getSize(); j++) {
+                        Estado cliente = (Estado) dato.getAcompañantes().getValor(j);
+                        historial += "\t" + (j+1) + ") " + cliente.getCliente().getNombre() + " " + cliente.getCliente().getApellido() + "\n\tFECHA DE LLEGADA: " + cliente.getLlegada() + "\n";
 
-                }else{
-                    historial += i + ") CLIENTE: " + dato.getCliente().getNombre() + " " + dato.getCliente().getApellido() + "\nFECHA DE LLEGADA: " + dato.getLlegada();
+                    } 
+                }
+                if(objeto.getNext() != null){
+                    historial += "\n\n";
                 }
                 objeto = objeto.getNext();
                 i += 1;
@@ -416,6 +423,24 @@ public class ListaDoble {
             return historial;
             }
         }
+    
+    public String transformar(){
+        if(!isEmpty()){
+            Nodo aux = head;
+            String expresion = "";
+            for(int i = 0; i < size; i++) {
+                Estado estado = (Estado) aux.getElement();
+                
+               expresion = expresion + estado.toString2() + "\n";
+               aux = aux.getNext();
+            }
+            return expresion;
+            
+        }else{
+            return null;
+        }
+    }
+    
     }
     
 

@@ -2,8 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaces;
+package GUI;
 
+import Funciones.ArchivoCSV;
+import static GUI.Bienvenidos.habitaciones;
+import static GUI.Bienvenidos.hospedados;
+import static GUI.Bienvenidos.reservaciones;
 import javax.swing.JOptionPane;
 
 /**
@@ -232,6 +236,11 @@ public class Menu extends javax.swing.JFrame {
 
     private void CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionActionPerformed
         // TODO add your handling code here:
+        ArchivoCSV archivo = new ArchivoCSV();
+       archivo.write_estado(hospedados);
+       archivo.write_habitaciones(habitaciones);
+       archivo.write_historial(habitaciones);
+       archivo.write_reservas(reservaciones);
         JOptionPane.showMessageDialog(null,"Entendido, cerrando sesión...\nHasta pronto.");
         Bienvenidos ventana = new Bienvenidos();
         this.setVisible(false);

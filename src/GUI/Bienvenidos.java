@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaces;
+package GUI;
 
 import Clases.Cliente;
 import EDD.ABB;
@@ -10,6 +10,7 @@ import EDD.AVL;
 import EDD.HashTable;
 import EDD.ListaDoble;
 import Funciones.ArchivoCSV;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -122,23 +123,12 @@ public class Bienvenidos extends javax.swing.JFrame {
             int num_hab = (int) hab_disponibles.getValor(i); 
             habitaciones.searchByKey(num_hab).setDispo(true);
         }
-        
-        //habitaciones.inOrden();
-        
-        
-       //hab_disponibles.printList();
-
-        //System.out.println(hospedados.getEstado()[277].getCliente().getNombre());
-       //habitaciones.searchByKey(277).mostrar_hitorial();
-
-        
-        //System.out.println(reservaciones.preOrden2(reservaciones.getNodoRaiz(), cadena));
-       
-                
+               
         Menu VentanaMenu = new Menu();
         
         this.setVisible(false);
         VentanaMenu.setLocationRelativeTo(null);
+        JOptionPane.showMessageDialog(null, "Iniciando sesión, datos cargados exitosamente...");
         VentanaMenu.setVisible(true);
         
     }//GEN-LAST:event_IngresarMenuActionPerformed

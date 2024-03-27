@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaces;
+package GUI;
 
 import Clases.Estado;
 import Clases.Reservacion;
 import Funciones.helpers;
-import static Interfaces.Bienvenidos.hab_disponibles;
-import static Interfaces.Bienvenidos.habitaciones;
-import static Interfaces.Bienvenidos.hospedados;
-import static Interfaces.Bienvenidos.reservaciones;
+import static GUI.Bienvenidos.hab_disponibles;
+import static GUI.Bienvenidos.habitaciones;
+import static GUI.Bienvenidos.hospedados;
+import static GUI.Bienvenidos.reservaciones;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +22,8 @@ public class CheckIn extends javax.swing.JFrame {
     /**
      * Creates new form CheckIn
      */
+    
+
     public CheckIn() {
         initComponents();
     }
@@ -112,7 +114,7 @@ public class CheckIn extends javax.swing.JFrame {
         DisplayEstadía.setEditable(false);
         DisplayEstadía.setBackground(new java.awt.Color(255, 255, 255));
         DisplayEstadía.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
-        DisplayEstadía.setForeground(new java.awt.Color(204, 204, 204));
+        DisplayEstadía.setForeground(new java.awt.Color(0, 0, 0));
         DisplayEstadía.setFocusable(false);
         jScrollPane1.setViewportView(DisplayEstadía);
 
@@ -121,7 +123,7 @@ public class CheckIn extends javax.swing.JFrame {
         DisplayHab.setEditable(false);
         DisplayHab.setBackground(new java.awt.Color(255, 255, 255));
         DisplayHab.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
-        DisplayHab.setForeground(new java.awt.Color(204, 204, 204));
+        DisplayHab.setForeground(new java.awt.Color(0, 0, 0));
         DisplayHab.setFocusable(false);
         jScrollPane2.setViewportView(DisplayHab);
 
@@ -130,7 +132,7 @@ public class CheckIn extends javax.swing.JFrame {
         DisplayCliente.setEditable(false);
         DisplayCliente.setBackground(new java.awt.Color(255, 255, 255));
         DisplayCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.blue));
-        DisplayCliente.setForeground(new java.awt.Color(204, 204, 204));
+        DisplayCliente.setForeground(new java.awt.Color(0, 0, 0));
         DisplayCliente.setFocusable(false);
         jScrollPane3.setViewportView(DisplayCliente);
 
@@ -199,20 +201,27 @@ public class CheckIn extends javax.swing.JFrame {
             }
             
             if(num_hosp != 0){
+                
                 Estado estado = new Estado(reservacion_actual.getCliente(), reservacion_actual.getLlegada(), num_hosp);
                 hospedados.insertEstado(estado);
+                reservaciones.eliminarRecursivo(reservaciones.getNodoRaiz(), ci);
+                System.out.println("a");
+                System.out.println(estado.getCliente().getNombre() + estado.getCliente().getApellido());
                 
                 hab_disponibles.eliminar();
                 
                 hospedados.Disponibles(hab_disponibles);
                 
-                JOptionPane.showMessageDialog(null,"El cliente " + estado.getCliente().getNombre() + " se hospedado en la habitacion "+ num_hosp);
+                DisplayCliente.setText("CLIENTE:\nNOMBRE: " + estado.getCliente().getNombre() + " " + estado.getCliente().getApellido() + "\n\nC.I.: " + estado.getCliente().getCedula() + "\nTÉLEFONO: " + estado.getCliente().getCelular());
+                DisplayEstadía.setText("LLEGADA: " + estado.getLlegada() + "\n\nSALIDA: " + reservacion_actual.getSalida());
+                DisplayHab.setText("TIPO: " + reservacion_actual.getTipoHab() + "\nHAB. ASIGNADA: " + num_hosp);
+                
             }else{
-                JOptionPane.showMessageDialog(null,"No hay habitacion disponible del tipo que reservo");
+                JOptionPane.showMessageDialog(null,"No hay habitacion disponible del tipo que reservó");
             }
             
         }else{
-            JOptionPane.showMessageDialog(null,"No existe la reservacion");
+            JOptionPane.showMessageDialog(null,"No existe la reservación. Verifique los datos ingresados.");
         }
     }//GEN-LAST:event_CheckInActionPerformed
 

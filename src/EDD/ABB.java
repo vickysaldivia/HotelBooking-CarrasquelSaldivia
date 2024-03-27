@@ -121,7 +121,7 @@ public class ABB {
 
     public String preOrden2(NodoAB root, String cadena) {
         if (root != null) {
-            cadena = cadena + root.getNum() + ", " + root.getDato().toString() + ",";
+            cadena = cadena + root.getNum() + "," + root.getDato().toString() + "\n";
             cadena = preOrden2(root.getHijoIzq(), cadena);
             cadena = preOrden2(root.getHijoDer(), cadena);
         }
@@ -129,16 +129,6 @@ public class ABB {
         return cadena;
     }
 
-    public void Lista(NodoAB root, ListaDoble list) {
-//        list.InsertarFinal(root.getDato());
-//        
-//        if(root.getHijoIzq() != null){
-//            Lista(root.getHijoIzq(), list);
-//        }
-//        if(root.getHijoDer() != null){
-//            Lista(root.getHijoDer(), list);
-//        }   
-    }
 
     public void inOrden(NodoAB root) {
         if (root != null) {
@@ -154,6 +144,43 @@ public class ABB {
             preOrden(root.getHijoDer());
             System.out.println("{ " + root.getNum() + " }");
         }
+    }
+    
+    public NodoAB eliminarRecursivo(NodoAB nodoActual, int num) {
+        if (nodoActual == null) {
+            return null;
+        }
+
+        if (num < nodoActual.getNum()) {
+            nodoActual.setHijoIzq(eliminarRecursivo(nodoActual.getHijoIzq(), num));
+        } else if (num > nodoActual.getNum()) {
+            nodoActual.setHijoDer(eliminarRecursivo(nodoActual.getHijoDer(), num));
+        } else {
+            // Caso 1: Nodo sin hijos
+            if (nodoActual.getHijoIzq() == null && nodoActual.getHijoDer() == null) {
+                return null;
+            }
+            // Caso 2: Nodo con un hijo
+            if (nodoActual.getHijoIzq() == null) {
+                return nodoActual.getHijoDer();
+            }
+            if (nodoActual.getHijoDer() == null) {
+                return nodoActual.getHijoIzq();
+            }
+            // Caso 3: Nodo con dos hijos
+            NodoAB sucesor = encontrarSucesor(nodoActual.getHijoDer());
+            nodoActual.setNum(sucesor.getNum());
+            nodoActual.setDato(sucesor.getDato());
+            nodoActual.setHijoDer(eliminarRecursivo(nodoActual.getHijoDer(), sucesor.getNum()));
+        }
+        return nodoActual;
+    }
+
+    public NodoAB encontrarSucesor(NodoAB nodo) {
+        while (nodo.getHijoIzq() != null) {
+            nodo = nodo.getHijoIzq();
+        }
+        return nodo;
     }
 
 }

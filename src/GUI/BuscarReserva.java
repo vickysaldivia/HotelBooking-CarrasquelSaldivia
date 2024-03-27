@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaces;
+package GUI;
 
 import Clases.Reservacion;
 import Funciones.Busqueda;
 import Funciones.helpers;
-import static Interfaces.Bienvenidos.reservaciones;
+import static GUI.Bienvenidos.reservaciones;
 import javax.swing.JOptionPane;
 
 /**
@@ -183,7 +183,6 @@ public class BuscarReserva extends javax.swing.JFrame {
         
         
         
-        System.out.println(ci);
        
         if (reservaciones.buscarRecursivo(reservaciones.getNodoRaiz(), ci) != null){
             String cadena = busqueda.buscarReservacion(reservaciones.buscarRecursivo(reservaciones.getNodoRaiz(), ci));

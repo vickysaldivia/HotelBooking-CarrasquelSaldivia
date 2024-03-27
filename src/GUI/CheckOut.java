@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaces;
+package GUI;
 
 import Clases.Cliente;
-import static Interfaces.Bienvenidos.hab_disponibles;
-import static Interfaces.Bienvenidos.habitaciones;
-import static Interfaces.Bienvenidos.hospedados;
+import static GUI.Bienvenidos.hab_disponibles;
+import static GUI.Bienvenidos.habitaciones;
+import static GUI.Bienvenidos.hospedados;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +22,8 @@ public class CheckOut extends javax.swing.JFrame {
     
     public CheckOut() {
         initComponents();
+        MensajeCierreExitoso1.setText("");
+        HabHabilitada.setText("");
     }
 
     /**
@@ -165,7 +167,7 @@ public class CheckOut extends javax.swing.JFrame {
 
         MensajeCierreExitoso1.setEditable(false);
         MensajeCierreExitoso1.setBackground(new java.awt.Color(255, 255, 255));
-        MensajeCierreExitoso1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        MensajeCierreExitoso1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         MensajeCierreExitoso1.setForeground(new java.awt.Color(0, 51, 139));
         MensajeCierreExitoso1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         MensajeCierreExitoso1.setFocusable(false);
@@ -253,15 +255,18 @@ public class CheckOut extends javax.swing.JFrame {
         
      
         if(hospedados.isInHashIndexN(cliente) != -1){
-            
+            String hab = String.valueOf(hospedados.isInHashIndexN(cliente));
             habitaciones.searchByKey(hospedados.isInHashIndexN(cliente)).getHistorial().insertFinal(hospedados.isInHashEstado(cliente));
             habitaciones.searchByKey(hospedados.isInHashIndexN(cliente)).setDispo(true);
             hospedados.eliminarEstado(hospedados.isInHashIndexN(cliente));
             
             
             hab_disponibles.eliminar();
-            
             hospedados.Disponibles(hab_disponibles);
+            
+            MensajeCierreExitoso1.setText("¡Cierre exitoso!");
+            HabHabilitada.setText(hab);
+            
           
         }else{
             JOptionPane.showMessageDialog(null,"El cliente no esta hospedado en el hotel");
