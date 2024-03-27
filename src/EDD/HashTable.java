@@ -95,6 +95,7 @@ public class HashTable {
         return -1;
     }
     
+    
     public Estado isInHashEstado(Cliente cliente){
         for (int i = 0; i < this.getEstado().length; i++) {
             if (getEstado()[i] != null){
@@ -105,6 +106,15 @@ public class HashTable {
         }
         
         return null;
+    }
+    
+    public void insertAcomp(Estado est, int num_hab) {
+        for (int i = 0; i < this.getEstado().length; i++) {
+            if (getEstado()[i] != null && i == num_hab) {
+                getEstado()[i].agregar_acomp(est);
+                break;
+            }
+        }
     }
     
     public void Disponibles(ListaDoble hab_disp){
@@ -126,6 +136,22 @@ public class HashTable {
         }
     } else {
         System.out.println("Número de habitación fuera de rango.");
+        }
     }
-}
+    
+    public String transformar(){
+        String tabla =  "";
+        for (int i = 1; i < this.getEstado().length; i++) {
+            if (getEstado()[i] != null) {
+                tabla += getEstado()[i].toString3() + "\n";
+                if(!getEstado()[i].getAcompañantes().isEmpty()){
+                    for (int j = 0; j < getEstado()[i].getAcompañantes().getSize(); j++) {
+                        Estado estado = (Estado) getEstado()[i].getAcompañantes().getValor(j);
+                        tabla += estado.toString4() + "\n";    
+                    }
+                }
+            }
+        }   
+        return tabla;
+    }
 }

@@ -4,6 +4,8 @@
  */
 package EDD;
 
+import Clases.Cliente;
+import Clases.Estado;
 import javax.swing.JOptionPane;
 
 /**
@@ -377,5 +379,68 @@ public class ListaDoble {
         tail = null;
         size = 0;
     }
+    public String toString2() {
+        if (size == 0) {
+            return "[]";
+        } else {
+            StringBuilder sb = new StringBuilder("[");
+            Nodo temp = head;
+            
+            while (temp != null) {
+                sb.append(temp.toString()).append(", ");
+                temp = temp.getNext();
+            }
+            sb.setLength(sb.length() - 2); // para eliminar la última coma y espacio
+            sb.append("]");
+            return sb.toString();
+        }
+    }
     
-}
+    public String ListaHist_String() {
+        if (size == 0) {
+            return null;
+        } else {
+            String historial = "";
+            Nodo objeto = this.head;
+            int i = 1;
+            while(objeto != null){
+                Estado dato = (Estado) objeto.getElement();
+                historial += i + ") CLIENTE: " + dato.getCliente().getNombre() + " " + dato.getCliente().getApellido() + "\nFECHA DE LLEGADA: " + dato.getLlegada();
+                if(dato.getAcompañantes().getSize() != 0){
+                    historial += "\nACOMPAÑANTES:\n";
+                    for (int j = 0; j < dato.getAcompañantes().getSize(); j++) {
+                        Estado cliente = (Estado) dato.getAcompañantes().getValor(j);
+                        historial += "\t" + (j+1) + ") " + cliente.getCliente().getNombre() + " " + cliente.getCliente().getApellido() + "\n\tFECHA DE LLEGADA: " + cliente.getLlegada() + "\n";
+
+                    } 
+                }
+                if(objeto.getNext() != null){
+                    historial += "\n\n";
+                }
+                objeto = objeto.getNext();
+                i += 1;
+            }
+            return historial;
+            }
+        }
+    
+    public String transformar(){
+        if(!isEmpty()){
+            Nodo aux = head;
+            String expresion = "";
+            for(int i = 0; i < size; i++) {
+                Estado estado = (Estado) aux.getElement();
+                
+               expresion = expresion + estado.toString2() + "\n";
+               aux = aux.getNext();
+            }
+            return expresion;
+            
+        }else{
+            return null;
+        }
+    }
+    
+    }
+    
+

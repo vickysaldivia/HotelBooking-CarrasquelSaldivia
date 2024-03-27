@@ -116,16 +116,32 @@ public class AVL {
         return y;
     }
     
-    public void inOrden() {
-        inOrden(tRoot);
+    public String inOrden() {
+        return inOrden(tRoot);
     }
 
-    private void inOrden(NodoAVL nodo) {
+    private String inOrden(NodoAVL nodo) {
+        String resultado = "";
         if (nodo != null) {
-            inOrden(nodo.getIzquierda()); 
-            System.out.println(nodo.getClave() + " - " + nodo.getHab().toString()); 
-            inOrden(nodo.getDerecha()); 
+            resultado += inOrden(nodo.getIzquierda()); // Recorre subárbol izquierdo y acumula
+            resultado += nodo.getClave() + "," + nodo.getHab().getTipoHab() + "," + nodo.getHab().getPiso() + "\n"; // Acumula los datos del nodo actual
+            resultado += inOrden(nodo.getDerecha()); // Recorre subárbol derecho y acumula
         }
+        return resultado;
+    }
+    
+    public String inOrdenHistorico() {
+        return inOrdenHistorico(tRoot);
+    }
+
+    private String inOrdenHistorico(NodoAVL nodo) {
+        String resultado = "";
+        if (nodo != null && nodo.getHab().getHistorial().getSize() != 0) {
+            resultado += inOrdenHistorico(nodo.getIzquierda()); // Recorre subárbol izquierdo y acumula
+            resultado += nodo.getHab().getHistorial().transformar(); // Acumula los datos del nodo actual
+            resultado += inOrdenHistorico(nodo.getDerecha()); // Recorre subárbol derecho y acumula
+        }
+        return resultado;
     }
     
     public Habitacion searchByKey(int num_hab) {
