@@ -12,10 +12,23 @@ import javax.swing.JOptionPane;
  *
  * @author Victoria Saldivia
  */
+/**
+ * Clase ListaDoble que representa una lista doblemente enlazada. Esta clase
+ * tiene tres atributos privados: head, tail y size. head es un nodo que
+ * representa el inicio de la lista, tail es un nodo que representa el final de
+ * la lista y size es un entero que representa el tamaño de la lista.
+ */
+
 public class ListaDoble {
+    // Atributos de la clase  ListaDoble
     private Nodo head;
     private Nodo tail;
     private int size;
+
+    /**
+     * Constructor de la clase ListaDoble. Inicializa los atributos head, tail y
+     * size en null y 0 respectivamente.
+     */
 
     public ListaDoble() {
         this.head = null;
@@ -49,12 +62,21 @@ public class ListaDoble {
     
     //Primitivas
     
-    //Saber si esta vacio o no
+    /**
+     * Método que verifica si la lista está vacía o no.
+     *
+     * @return true si la lista está vacía, false de lo contrario
+     */
     public boolean isEmpty(){
         return head == null;
     }
     
-    //Insertar al principio
+    /**
+     * Método para insertar un elemento al principio de la lista.
+     *
+     * @param number el elemento a insertar
+     * @return el nodo creado
+     */
     public Nodo insertBegin(Object number) {
         Nodo node = new Nodo(number);
         if (isEmpty()) {
@@ -74,7 +96,12 @@ public class ListaDoble {
         return node;
     }
     
-    //Insertar al Final
+    /**
+     * Método para insertar un elemento al final de la lista.
+     *
+     * @param number el elemento a insertar
+     * @return el nodo creado
+     */
     public Nodo insertFinal(Object number){
         Nodo node = new Nodo(number);
         if (isEmpty()) {
@@ -93,7 +120,15 @@ public class ListaDoble {
         return node;
     }
     
-    //Inser por un indice dado
+    /**
+     * Método para insertar un elemento en una posición dada de la lista. Si el
+     * índice es mayor que el tamaño de la lista, el elemento se insertará al
+     * final.
+     *
+     * @param index la posición en la que se insertará el elemento
+     * @param number el elemento a insertar
+     * @return el nodo creado
+     */
     public Nodo insertInIndex(int index, Object number) {
         Nodo node = new Nodo(number);
         if (isEmpty()) {
@@ -134,7 +169,16 @@ public class ListaDoble {
         return node;
     }
     
-    //Insertar por un Onjeto de referencia dado
+    /**
+     * Método para insertar un elemento después de un objeto de referencia dado.
+     * Si el objeto de referencia no se encuentra en la lista, no se realiza
+     * ninguna inserción.
+     *
+     * @param ref el objeto de referencia después del cual se insertará el
+     * elemento
+     * @param valor el elemento a insertar
+     * @return el nodo creado, null si el objeto de referencia no se encuentra
+     */
     public Nodo insertarPorReferencia(Object ref,Object valor){
         
         Nodo nuevo = new Nodo();
@@ -161,7 +205,11 @@ public class ListaDoble {
         return null;
     }
     
-    //Eliminar al principio
+    /**
+     * Método para eliminar el primer nodo de la lista.
+     *
+     * @return el nodo eliminado, null si la lista está vacía
+     */
     public Nodo deleteBegin(){
         if (!isEmpty()){
             if (getSize() == 1) {
@@ -176,7 +224,11 @@ public class ListaDoble {
         return null;
     }
     
-    //Eliminar al final
+    /**
+     * Método para eliminar el último nodo de la lista.
+     *
+     * @return el nodo eliminado, null si la lista está vacía
+     */
     public Nodo deleteFinal(){
         if (!isEmpty()){
             Nodo pointer = getHead();
@@ -198,7 +250,15 @@ public class ListaDoble {
         return null;
     }
     
-    //Eliminar por un indice dado
+    /**
+     * Método para eliminar el nodo en una posición dada de la lista. Si el
+     * índice es mayor que el tamaño de la lista, no se realiza ninguna
+     * eliminación.
+     *
+     * @param index la posición del nodo a eliminar
+     * @return el nodo eliminado, null si el índice es mayor que el tamaño de la
+     * lista
+     */
     public Nodo deleteInIndex(int index) {
         if (!isEmpty()){
             Nodo pointer = getHead();
@@ -249,7 +309,12 @@ public class ListaDoble {
         return null;
     }
     
-    //Eliminar por un objeto dado
+    /**
+     * Método para eliminar el nodo que contiene un objeto dado.
+     *
+     * @param dato el objeto a eliminar
+     * @return el nodo eliminado, null si el objeto no se encuentra en la lista
+     */
     public Nodo deleteElement(Object dato){
         if (buscar(dato)) {
             if(head.getElement() == dato){
@@ -269,7 +334,13 @@ public class ListaDoble {
         return null;
     }
     
-    //Editar por refereancia
+    /**
+     * Método para editar el valor de un nodo que contiene un objeto de
+     * referencia dado.
+     *
+     * @param referencia el objeto de referencia cuyo valor se actualizará
+     * @param dato el nuevo valor a asignar al nodo
+     */
     public void editarPorReferencia(Object referencia, Object dato){
         if (buscar(referencia)) {
             Nodo aux = head;
@@ -280,7 +351,14 @@ public class ListaDoble {
         }
     }
     
-        //Metodo para editar el valor de un nodo en una posicion
+    /**
+     * Método para editar el valor de un nodo en una posición dada. Si la
+     * posición está fuera del rango válido (mayor o igual al tamaño de la
+     * lista), no se realiza ninguna modificación.
+     *
+     * @param posicion la posición del nodo cuyo valor se actualizará
+     * @param dato el nuevo valor a asignar al nodo
+     */
     public void editarPorPosicion(int posicion , Object dato){
 
         if(posicion>=0 && posicion<size){
@@ -298,7 +376,15 @@ public class ListaDoble {
         }
     }
     
-    //Devolver un objeto que esta en un indice dado
+    /**
+     * Método para obtener el valor almacenado en un nodo en una posición dada.
+     * Si la lista está vacía o la posición está fuera del rango válido, se
+     * devuelve -1.
+     *
+     * @param index la posición del nodo del que se desea obtener el valor
+     * @return el valor almacenado en el nodo en la posición dada, o -1 si la
+     * lista está vacía o la posición es inválida
+     */
     public Object getValor(int index) {
         if (isEmpty()) {
             return -1;
@@ -313,7 +399,14 @@ public class ListaDoble {
         }
     }
     
-    //Metodo para retornar la posicion de un nodo
+    /**
+     * Método para obtener la posición de un nodo dado en la lista. Si el nodo
+     * no se encuentra en la lista, se devuelve -1.
+     *
+     * @param nodito el nodo del que se desea conocer la posición
+     * @return la posición del nodo en la lista, o -1 si el nodo no se encuentra
+     * en la lista
+     */
     public int getIndex (Nodo nodito){
         if (!isEmpty()){
             Nodo aux = head;
@@ -330,7 +423,14 @@ public class ListaDoble {
         return -1;
     }
     
-    //Consulta la posición de un elemento en la lista
+    /**
+     * Método para consultar la posición de un elemento en la lista. Si el
+     * elemento no se encuentra en la lista, se devuelve -1.
+     *
+     * @param referencia el elemento del que se desea conocer la posición
+     * @return la posición del elemento en la lista, o -1 si el elemento no se
+     * encuentra en la lista
+     */
     public int getPosicion(Object referencia){
         if (buscar(referencia)) {
             
@@ -346,7 +446,10 @@ public class ListaDoble {
         }
     }
     
-    //Imprimir lista
+    /**
+     * Método para imprimir la lista enlazada.
+     *
+     */
     public void printList(){
         if(!isEmpty()){
             Nodo aux = head;
@@ -372,13 +475,22 @@ public class ListaDoble {
         }
         return false;
     }
-    
-    //Destructor
+    /**
+     * Método para eliminar todos los elementos de la lista enlazada.
+     */
     public void eliminar(){
         head = null;
         tail = null;
         size = 0;
     }
+    
+    /**
+    * Método que devuelve una representación en forma de cadena de la lista enlazada.
+    * Si la lista está vacía, devuelve "[]". En caso contrario, devuelve una cadena
+    * en la forma: "[elemento1, elemento2, ..., elementoN]".
+    * 
+    * @return cadena de caracteres representando la lista enlazada
+    */
     public String toString2() {
         if (size == 0) {
             return "[]";
@@ -396,6 +508,12 @@ public class ListaDoble {
         }
     }
     
+    /**
+     * Método que devuelve el historial de los clientes en la lista enlazada en
+     * forma de cadena de caracteres. Si la lista está vacía, devuelve null
+     *
+     * @return historial de los clientes en la lista enlazada
+     */
     public String ListaHist_String() {
         if (size == 0) {
             return null;
@@ -424,6 +542,15 @@ public class ListaDoble {
             }
         }
     
+    /**
+     * Método que devuelve una representación en forma de cadena de la lista
+     * enlazada, donde cada elemento de la lista es convertido a una cadena de
+     * caracteres usando el método toString2() de la clase Estado. Si la lista
+     * está vacía, devuelve null.
+     *
+     * @return cadena de caracteres representando la lista enlazada
+     */
+
     public String transformar(){
         if(!isEmpty()){
             Nodo aux = head;

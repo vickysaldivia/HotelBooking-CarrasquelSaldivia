@@ -205,8 +205,6 @@ public class CheckIn extends javax.swing.JFrame {
                 Estado estado = new Estado(reservacion_actual.getCliente(), reservacion_actual.getLlegada(), num_hosp);
                 hospedados.insertEstado(estado);
                 reservaciones.eliminarRecursivo(reservaciones.getNodoRaiz(), ci);
-                System.out.println("a");
-                System.out.println(estado.getCliente().getNombre() + estado.getCliente().getApellido());
                 
                 hab_disponibles.eliminar();
                 

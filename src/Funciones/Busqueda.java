@@ -16,6 +16,14 @@ import EDD.NodoAB;
  */
 public class Busqueda {
     
+    /**
+     * Busca una reservación y devuelve una cadena con la información relevante
+     * de la misma.
+     *
+     * @param nodo el nodo que contiene la reservación a buscar
+     * @return una cadena que representa la información de la reservación
+     * encontrada
+     */
     public String buscarReservacion(NodoAB nodo){
         Reservacion reserva = (Reservacion) nodo.getDato();
         String res = "";
@@ -25,6 +33,18 @@ public class Busqueda {
         return res;
     }
     
+    /**
+     * Busca un cliente hospedado y devuelve una cadena con la información
+     * relevante.
+     *
+     * @param cliente el cliente hospedado que se desea buscar
+     * @param hospedados la tabla hash que contiene la información de los
+     * clientes hospedados
+     * @param i el índice en la tabla hash donde se encuentra la información del
+     * cliente
+     * @return una cadena que representa la información del cliente hospedado
+     * encontrado
+     */
     public String buscarHospedado(Cliente cliente, HashTable hospedados, int i){
         String cadena = "";
         
@@ -32,10 +52,6 @@ public class Busqueda {
         cadena += "\n\n" + "HABITACIÓN: " + hospedados.isInHashIndexN(cliente);
         
         return cadena;
-    }
-    
-    public void historial(int numHab, ABB historial){
-    
     }
     
 }
