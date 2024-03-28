@@ -12,14 +12,24 @@ import javax.swing.JOptionPane;
  *
  * @author Victoria Saldivia
  */
+/**
+ * Clase que representa un árbol binario de búsqueda (ABB).
+ */
 public class ABB {
 
+     /**
+     * Referencia al nodo raíz del árbol.
+     */
     private NodoAB nodoRaiz;
 
+     /**
+     * Constructor por defecto que inicializa el árbol como vacío.
+     */
     public ABB() {
         this.nodoRaiz = null;
     }
 
+     // Getter y Setter de la raiz
     public NodoAB getNodoRaiz() {
         return nodoRaiz;
     }
@@ -28,14 +38,30 @@ public class ABB {
         this.nodoRaiz = nodoRaiz;
     }
 
+    /**
+     * Indica si el árbol está vacío.
+     *
+     * @return true si el árbol está vacío, false en caso contrario.
+     */
+
     public boolean esVacio() {
         return this.getNodoRaiz() == null;
     }
 
+    /**
+     * Vacía el árbol.
+     */
     public void vaciar() {
         this.setNodoRaiz(null);
     }
 
+    /**
+     * Inserta un nuevo nodo en el árbol.
+     *
+     * @param raiz       el nodo en el que se insertará el nuevo nodo.
+     * @param element    el elemento asociado al nuevo nodo.
+     * @param num        la clave asociada al nuevo nodo.
+     */
     public void insertNodo(NodoAB raiz, Object element, int num) {
         NodoAB node = new NodoAB(element, num);
         if (esVacio()) {
@@ -58,7 +84,13 @@ public class ABB {
             }
         }
     }
-
+/**
+     * Busca un nodo en el árbol por su clave.
+     *
+     * @param num   la clave del nodo a buscar.
+     * @param root  la raíz del árbol.
+     * @return el nodo encontrado o null si no existe.
+     */
     public NodoAB buscarNodo(int num, NodoAB root) {
         if (esVacio()) {
             return null;
@@ -81,6 +113,14 @@ public class ABB {
         }
     }
     
+    
+/**
+     * Busca un nodo en el árbol por su clave de forma recursiva.
+     *
+     * @param nodoActual la raíz actual del árbol.
+     * @param num        la clave del nodo a buscar.
+     * @return el nodo encontrado
+     */
     public NodoAB buscarRecursivo(NodoAB nodoActual, int num) {
         if (nodoActual == null || nodoActual.getNum() == num) {
             return nodoActual;
@@ -93,6 +133,13 @@ public class ABB {
         }
     }
 
+    /**
+     * Modifica el historial asociado al nodo con la clave num en el árbol.
+     *
+     * @param num la clave del nodo a modificar.
+     * @param root la raíz del árbol.
+     * @param estado el nuevo estado del historial.
+     */
     public void ModifHistorial(int num, NodoAB root, Estado estado) {
         if (root == null) {
             System.out.println("no se encontro");
@@ -111,6 +158,11 @@ public class ABB {
         }
     }
 
+    /**
+     * Realiza un recorrido preorden del árbol y muestra el dato de cada nodo.
+     *
+     * @param root la raíz del árbol.
+     */
     public void preOrden(NodoAB root) {
         if (root != null) {
             System.out.println("{ " + root.getDato() + " }");
@@ -119,6 +171,14 @@ public class ABB {
         }
     }
 
+    /**
+     * Realiza un recorrido preorden del árbol y devuelve una cadena con la
+     * información de cada nodo.
+     *
+     * @param root la raíz del árbol.
+     * @param cadena la cadena donde se guardará la información.
+     * @return la cadena con la información de los nodos.
+     */
     public String preOrden2(NodoAB root, String cadena) {
         if (root != null) {
             cadena = cadena + root.getNum() + "," + root.getDato().toString() + "\n";
@@ -130,6 +190,11 @@ public class ABB {
     }
 
 
+    /**
+     * Realiza un recorrido inorden del árbol y muestra el dato de cada nodo.
+     *
+     * @param root la raíz del árbol.
+     */
     public void inOrden(NodoAB root) {
         if (root != null) {
             preOrden(root.getHijoIzq());
@@ -138,6 +203,11 @@ public class ABB {
         }
     }
 
+    /**
+     * Realiza un recorrido postorden del árbol y muestra el dato de cada nodo.
+     *
+     * @param root la raíz del árbol.
+     */
     public void postOrden(NodoAB root) {
         if (root != null) {
             preOrden(root.getHijoIzq());
@@ -146,6 +216,13 @@ public class ABB {
         }
     }
     
+    /**
+     * Elimina recursivamente un nodo con la clave num del árbol.
+     *
+     * @param nodoActual la raíz actual del árbol.
+     * @param num la clave del nodo a eliminar.
+     * @return la raíz actual del árbol después de la eliminación.
+     */
     public NodoAB eliminarRecursivo(NodoAB nodoActual, int num) {
         if (nodoActual == null) {
             return null;
@@ -176,6 +253,12 @@ public class ABB {
         return nodoActual;
     }
 
+    /**
+     * Encuentra el sucesor inorder del nodo dado.
+     *
+     * @param nodo el nodo del cual se quiere encontrar el sucesor.
+     * @return el nodo sucesor.
+     */
     public NodoAB encontrarSucesor(NodoAB nodo) {
         while (nodo.getHijoIzq() != null) {
             nodo = nodo.getHijoIzq();

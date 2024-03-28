@@ -8,13 +8,26 @@ package EDD;
  *
  * @author Victoria Saldivia
  */
+/**
+ * Clase que representa un nodo en un árbol binario de búsqueda.
+ */
 public class NodoAB {
+    // Atributos de la clase NodoAB
     private int num;
     private Object dato;
     private NodoAB HijoIzq;
     private NodoAB HijoDer;
     private NodoAB father;
 
+    /**
+     * Constructor de la clase NodoAB.
+     *
+     * @param num El número del nodo.
+     * @param dato El dato almacenado en el nodo.
+     * @param HijoIzq El hijo izquierdo del nodo.
+     * @param HijoDer El hijo derecho del nodo.
+     * @param father El nodo padre del nodo.
+     */
     public NodoAB(int num,Object dato, NodoAB HijoIzq, NodoAB HijoDer, NodoAB father) {
         this.num = num;
         this.dato = dato;
@@ -23,6 +36,12 @@ public class NodoAB {
         this.father = father;
     }
     
+    /**
+     * Constructor de la clase NodoAB.
+     *
+     * @param dato El dato almacenado en el nodo.
+     * @param num El número del nodo.
+     */
     public NodoAB(Object dato, int num) {
         this.num = num;
         this.dato = dato;
@@ -31,6 +50,7 @@ public class NodoAB {
         this.father = null;
     }
 
+    // Getters y Setters de cada uno de los atributos
     public Object getDato() {
         return dato;
     }

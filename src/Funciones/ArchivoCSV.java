@@ -26,7 +26,14 @@ import javax.swing.JOptionPane;
 public class ArchivoCSV {
 
     helpers help = new helpers();
-
+    
+    /**
+     * Lee el archivo de reservaciones en formato CSV y carga la información en
+     * un árbol binario de búsqueda.
+     *
+     * @param reservaciones el árbol binario de búsqueda donde se almacenarán
+     * las reservaciones
+     */
     public void leer_reservaciones(ABB reservaciones) {
         String line;
         String expresion_txt = "";
@@ -52,18 +59,19 @@ public class ArchivoCSV {
                         
                         if (!info[0].equalsIgnoreCase("")) {
                             //if (help.ValidarCedula(info[0]) != -1 && help.validarEmail(info[3]) && help.validarTelf(info[5]) && help.validarFecha(info[7]) && help.validarFecha(info[7])) {
+                            try{
                             int cedula = help.ValidarCedula(info[0]);
-                            String nombre = info[1];
-                            String apellido = info[2];
-                            String email = info[3];
-                            String genero = info[4];
-                            String tipo_hab = info[5];
-                            String telf = info[6];
+                            String nombre = help.validarString2(info[1]);
+                            String apellido = help.validarString2(info[2]);
+                            String email = help.validarEmail(info[3]);
+                            String genero = help.validarString2(info[4]);
+                            String tipo_hab = help.validarTipoHab2(info[5]);
+                            String telf = help.validarTelefono(info[6]);
 
                             Cliente cliente = new Cliente(nombre, apellido, cedula, email, genero, telf);
 
-                            String llegada = info[7];
-                            String salida = info[8];
+                            String llegada = help.validarFecha2(info[7]);
+                            String salida = help.validarFecha2(info[8]);
 
                             Reservacion reservacion = new Reservacion(cliente, tipo_hab, llegada, salida);
                             reservaciones.insertNodo(reservaciones.getNodoRaiz(), reservacion, cedula);
@@ -71,6 +79,10 @@ public class ArchivoCSV {
 //                                JOptionPane.showMessageDialog(null, "Hay un error en algun dato");
 //                                break;
 //                            }
+                            }catch(Exception e){
+                                JOptionPane.showMessageDialog(null, "Hay un error en algun dato");
+                                break;
+                            }
                         }
                     }
                 }
@@ -81,6 +93,13 @@ public class ArchivoCSV {
         }
     }
 
+    /**
+     * Lee el archivo de historial de habitaciones en formato CSV y carga la
+     * información en un árbol AVL.
+     *
+     * @param habitaciones el árbol AVL donde se almacenará el historial de
+     * habitaciones
+     */
     public void leer_historial(AVL habitaciones) {
         String line;
         String expresion_txt = "";
@@ -103,20 +122,25 @@ public class ArchivoCSV {
                         String[] info = expresion_split[i].split(",");
                         if (!info[0].equalsIgnoreCase("")) {
 //                            if (help.validarCedula(info[0]) && help.validarEmail(info[3]) && help.validarFecha(info[55])) {
-                            int cedula = Integer.parseInt(info[0].replaceAll("\\.", ""));
-                            String nombre = info[1];
-                            String apellido = info[2];
-                            String email = info[3];
-                            String genero = info[4];
-                            String llegada = info[5];
+                            try{
+                            int cedula = help.ValidarCedula(info[0]);
+                            String nombre = help.validarString2(info[1]);
+                            String apellido = help.validarString2(info[2]);
+                            String email = help.validarEmail(info[3]);
+                            String genero = help.validarString2(info[4]);
+                            String llegada = help.validarFecha2(info[5]);
 
                             Cliente cliente = new Cliente(nombre, apellido, cedula, email, genero);
-
-                            int num_hab = Integer.parseInt(info[6]);
+                            
+                            
+                            int num_hab = help.validarNumero(info[6]);
                             Estado estado = new Estado(cliente, llegada, num_hab);
 
                             habitaciones.searchByKey(num_hab).getHistorial().insertFinal(estado);
 
+                            }catch(Exception e){
+                                
+                            }
                             //}
                         }
 
@@ -129,7 +153,14 @@ public class ArchivoCSV {
         }
 
     }
-
+    
+    /**
+     * Lee el archivo de estado de las habitaciones en formato CSV y carga la
+     * información en una tabla hash.
+     *
+     * @param table la tabla hash donde se almacenará el estado de las
+     * habitaciones
+     */
     public void Leer_Estado(HashTable table) {
         String line;
         String expresion_txt = "";
@@ -152,44 +183,44 @@ public class ArchivoCSV {
                     for (int i = 0; i < expresion_split.length - 1; i++) {
                         String[] info = expresion_split[i].split(",");
                         if (!info[0].equalsIgnoreCase("")) {
-                            if (help.validarNumero(info[0]) && help.validarEmail(info[3]) && help.validarTelf(info[5])) {
+                            try {
                                 int num_hab = Integer.parseInt(info[0]);
-                                String nombre = info[1];
-                                String apellido = info[2];
-                                String email = info[3];
-                                String sexo = info[4];
-                                String telf = info[5];
+                                String nombre = help.validarString2(info[1]);
+                                String apellido = help.validarString2(info[2]);
+                                String email = help.validarEmail(info[3]);
+                                String sexo = help.validarString2(info[4]);
+                                String telf = help.validarTelefono(info[5]);
 
                                 Cliente cliente = new Cliente(nombre, apellido, email, sexo, telf);
-
-                                String fecha_llegada = info[6];
+                                System.out.println(cliente.toString());
+                                String fecha_llegada = help.validarFecha2(info[6]);
                                 Estado estado = new Estado(cliente, fecha_llegada, num_hab);
 
                                 table.insertEstado(estado);
 
                                 ultima_hab = num_hab;
-                            } else {
+                            } catch(Exception e) {
                                 JOptionPane.showMessageDialog(null, "Hay un error en algun dato");
                                 break;
                             }
                         } else {
                             if (i != 0) {
-                                if (help.validarEmail(info[3]) && help.validarTelf(info[5])) {
+                                try{
 
-                                    String nombre = info[1];
-                                    String apellido = info[2];
-                                    String email = info[3];
-                                    String sexo = info[4];
-                                    String telf = info[5];
+                                    String nombre = help.validarString2(info[1]);
+                                    String apellido = help.validarString2(info[2]);
+                                    String email = help.validarEmail(info[3]);
+                                    String sexo = help.validarString2(info[4]);
+                                    String telf = help.validarTelefono(info[6]);
 
                                     Cliente cliente = new Cliente(nombre, apellido, email, sexo, telf);
 
-                                    String fecha_llegada = info[6];
+                                    String fecha_llegada = help.validarFecha2(info[6]);
                                     Estado estado = new Estado(cliente, fecha_llegada, ultima_hab);
 
                                     table.insertAcomp(estado, ultima_hab);
 
-                                } else {
+                                } catch (Exception e) {
                                     JOptionPane.showMessageDialog(null, "Hay un error en algun dato");
                                     break;
                                 }
@@ -205,6 +236,12 @@ public class ArchivoCSV {
         }
     }
 
+    /**
+     * Lee el archivo de habitaciones en formato CSV y carga la información en
+     * un árbol AVL.
+     *
+     * @param habitaciones el árbol AVL donde se almacenarán las habitaciones
+     */
     public void leer_habitaciones(AVL habitaciones) {
         String line;
         String expresion_txt = "";
@@ -227,16 +264,16 @@ public class ArchivoCSV {
                     for (int i = 0; i < expresion_split.length; i++) {
                         String[] info = expresion_split[i].split(",");
                         if (!info[0].equalsIgnoreCase("")) {
-                            //if (help.validarNumero(info[0]) && help.validarTipoHab(info[1]) && help.validarNumero(info[2]) ) {
+                            try {
                             int num_hab = Integer.parseInt(info[0]);
-                            String tipoHab = info[1];
+                            String tipoHab = help.validarTipoHab2(info[1]);
                             int piso = Integer.parseInt(info[2]);
                             Habitacion habitacion = new Habitacion(num_hab, tipoHab, piso);
                             habitaciones.insertar(num_hab, habitacion);
-//                            } else {
-//                                JOptionPane.showMessageDialog(null, "Hay un error en algun dato");
-//                                break;
-//                            }
+                            } catch(Exception e) {
+                                JOptionPane.showMessageDialog(null, "Hay un error en algun dato");
+                                break;
+                            }
                         }
                     }
                 }
@@ -247,6 +284,11 @@ public class ArchivoCSV {
         }
     }
 
+    /**
+     * Escribe la información del estado de las habitaciones en un archivo CSV.
+     *
+     * @param table la tabla hash que contiene el estado de las habitaciones
+     */
     public void write_estado(HashTable table) {
         String path = "test//estado.csv";
         if (table.getSize() > 0) {
@@ -261,6 +303,12 @@ public class ArchivoCSV {
         }
     }
 
+    /**
+     * Escribe la información de las reservaciones en un archivo CSV.
+     *
+     * @param reservas el árbol binario de búsqueda que contiene las
+     * reservaciones
+     */
     public void write_reservas(ABB reservas) {
         String path = "test//reservas.csv";
         String cadena = "";
@@ -275,6 +323,11 @@ public class ArchivoCSV {
 
     }
 
+    /**
+     * Escribe la información de las habitaciones en un archivo CSV.
+     *
+     * @param habitaciones el árbol AVL que contiene las habitaciones
+     */    
     public void write_habitaciones(AVL habitaciones) {
         String path = "test//Habitaciones.csv";
 
@@ -289,6 +342,12 @@ public class ArchivoCSV {
 
     }
 
+    /**
+     * Escribe la información del historial de habitaciones en un archivo CSV.
+     *
+     * @param habitaciones el árbol AVL que contiene el historial de
+     * habitaciones
+     */
     public void write_historial(AVL habitaciones) {
         String path = "test//Historico.csv";
 

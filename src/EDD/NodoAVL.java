@@ -10,14 +10,29 @@ import Clases.Habitacion;
  *
  * @author vickysaldivia
  */
+/**
+ * Clase NodoAVL que representa un nodo en un árbol AVL. Cada nodo almacena un
+ * número de habitación y una referencia a una instancia de la clase Habitacion.
+ * Además, cada nodo tiene una altura, una referencia a su subárbol izquierdo y
+ * una referencia a su subárbol derecho.
+ */
 public class NodoAVL {
 
+    // Atributos de la clase NodoAVL
     private int num_hab;
     private Habitacion hab;
     private int altura;
     private NodoAVL izquierda;
     private NodoAVL derecha;
 
+    /**
+     * Constructor de la clase NodoAVL. Inicializa las propiedades del nodo con
+     * los parámetros dados.
+     *
+     * @param clave El número de habitación a almacenar en el nodo.
+     * @param hab Una referencia a una instancia de la clase Habitacion asociada
+     * con el número de habitación.
+     */
     public NodoAVL(int clave, Habitacion hab) {
         this.hab = hab;
         this.num_hab = clave;
@@ -26,6 +41,7 @@ public class NodoAVL {
         this.derecha = null;
     }
 
+    // Getters, Setters y Verificaciones
     public int getClave() {
         return num_hab;
     }
